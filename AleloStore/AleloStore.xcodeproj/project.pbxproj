@@ -12,6 +12,7 @@
 		4F93FF2F2A2BB31C008F0BF0 /* ProductSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */; };
 		4F93FF3B2A2BB691008F0BF0 /* ProductsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF3A2A2BB691008F0BF0 /* ProductsLoader.swift */; };
 		4F93FF3E2A2BB7EC008F0BF0 /* RemoteProductsLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF3D2A2BB7EC008F0BF0 /* RemoteProductsLoaderTests.swift */; };
+		4F93FF412A2BBF6F008F0BF0 /* RemoteProductsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF402A2BBF6F008F0BF0 /* RemoteProductsLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSize.swift; sourceTree = "<group>"; };
 		4F93FF3A2A2BB691008F0BF0 /* ProductsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsLoader.swift; sourceTree = "<group>"; };
 		4F93FF3D2A2BB7EC008F0BF0 /* RemoteProductsLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteProductsLoaderTests.swift; sourceTree = "<group>"; };
+		4F93FF402A2BBF6F008F0BF0 /* RemoteProductsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteProductsLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				4F93FF3C2A2BB737008F0BF0 /* Products Feature */,
+				4F93FF3F2A2BBF4D008F0BF0 /* Products API */,
 			);
 			path = AleloStore;
 			sourceTree = "<group>";
@@ -94,6 +97,14 @@
 				4F93FF3A2A2BB691008F0BF0 /* ProductsLoader.swift */,
 			);
 			path = "Products Feature";
+			sourceTree = "<group>";
+		};
+		4F93FF3F2A2BBF4D008F0BF0 /* Products API */ = {
+			isa = PBXGroup;
+			children = (
+				4F93FF402A2BBF6F008F0BF0 /* RemoteProductsLoader.swift */,
+			);
+			path = "Products API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F93FF412A2BBF6F008F0BF0 /* RemoteProductsLoader.swift in Sources */,
 				4F93FF2F2A2BB31C008F0BF0 /* ProductSize.swift in Sources */,
 				4F93FF2D2A2BB262008F0BF0 /* Product.swift in Sources */,
 				4F93FF3B2A2BB691008F0BF0 /* ProductsLoader.swift in Sources */,
