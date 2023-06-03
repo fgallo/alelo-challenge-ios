@@ -52,9 +52,9 @@ internal final class ProductsMapper {
     internal static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteProductsLoader.Result {
         guard response.statusCode == OK_200,
               let root = try? JSONDecoder().decode(Root.self, from: data) else {
-            return .failure(.invalidData)
+            return .failure(RemoteProductsLoader.Error.invalidData)
         }
-        
+
         return .success(root.productsList)
     }
 }

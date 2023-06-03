@@ -4,11 +4,11 @@
 
 import Foundation
 
-enum LoadProductsResult {
+public enum LoadProductsResult {
     case success([Product])
     case failure(Error)
 }
 
-protocol ProductsLoader {
+public protocol ProductsLoader {
     func load(completion: @escaping (LoadProductsResult) -> Void)
 }
