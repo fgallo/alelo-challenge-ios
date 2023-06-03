@@ -88,9 +88,17 @@
 		4F2B8F0A2A2BAD91000B1F6D /* AleloStoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				4F93FF3D2A2BB7EC008F0BF0 /* RemoteProductsLoaderTests.swift */,
+				4F8698DE2A2BF26B006807C0 /* Products API */,
 			);
 			path = AleloStoreTests;
+			sourceTree = "<group>";
+		};
+		4F8698DE2A2BF26B006807C0 /* Products API */ = {
+			isa = PBXGroup;
+			children = (
+				4F93FF3D2A2BB7EC008F0BF0 /* RemoteProductsLoaderTests.swift */,
+			);
+			path = "Products API";
 			sourceTree = "<group>";
 		};
 		4F93FF3C2A2BB737008F0BF0 /* Products Feature */ = {
