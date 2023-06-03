@@ -73,9 +73,7 @@
 		4F2B8F002A2BAD91000B1F6D /* AleloStore */ = {
 			isa = PBXGroup;
 			children = (
-				4F93FF2C2A2BB262008F0BF0 /* Product.swift */,
-				4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */,
-				4F93FF3A2A2BB691008F0BF0 /* ProductsLoader.swift */,
+				4F93FF3C2A2BB737008F0BF0 /* Products Feature */,
 			);
 			path = AleloStore;
 			sourceTree = "<group>";
@@ -86,6 +84,16 @@
 				4F2B8F0B2A2BAD91000B1F6D /* AleloStoreTests.swift */,
 			);
 			path = AleloStoreTests;
+			sourceTree = "<group>";
+		};
+		4F93FF3C2A2BB737008F0BF0 /* Products Feature */ = {
+			isa = PBXGroup;
+			children = (
+				4F93FF2C2A2BB262008F0BF0 /* Product.swift */,
+				4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */,
+				4F93FF3A2A2BB691008F0BF0 /* ProductsLoader.swift */,
+			);
+			path = "Products Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
