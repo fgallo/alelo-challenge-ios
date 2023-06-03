@@ -5,10 +5,30 @@
 import Foundation
 
 public struct Product: Equatable {
-    let name: String
-    let regularPrice: String
-    let salePrice: String
-    let onSale: Bool
-    let imageURL: URL
-    let sizes: [ProductSize]
+    public let name: String
+    public let regularPrice: String
+    public let salePrice: String
+    public let onSale: Bool
+    public let imageURL: URL
+    public let sizes: [ProductSize]
+    
+    public init(name: String, regularPrice: String, salePrice: String, onSale: Bool, imageURL: URL, sizes: [ProductSize]) {
+        self.name = name
+        self.regularPrice = regularPrice
+        self.salePrice = salePrice
+        self.onSale = onSale
+        self.imageURL = imageURL
+        self.sizes = sizes
+    }
+}
+
+extension Product: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case name
+        case regularPrice = "regular_price"
+        case salePrice = "actual_price"
+        case onSale = "on_sale"
+        case imageURL = "image"
+        case sizes
+    }
 }

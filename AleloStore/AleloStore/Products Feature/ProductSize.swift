@@ -4,8 +4,14 @@
 
 import Foundation
 
-struct ProductSize: Equatable {
-    let size: String
-    let sku: String
-    let available: Bool
+public struct ProductSize: Equatable, Decodable {
+    public let size: String
+    public let sku: String
+    public let available: Bool
+    
+    public init(size: String, sku: String, available: Bool) {
+        self.size = size
+        self.sku = sku
+        self.available = available
+    }
 }
