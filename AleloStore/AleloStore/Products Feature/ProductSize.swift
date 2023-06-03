@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct ProductSize {
+struct ProductSize: Equatable {
     let size: String
     let sku: String
     let available: Bool

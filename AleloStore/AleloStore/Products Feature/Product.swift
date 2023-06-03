@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct Product {
+public struct Product: Equatable {
     let name: String
     let regularPrice: String
     let salePrice: String
