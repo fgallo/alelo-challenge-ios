@@ -35,10 +35,10 @@ class RemoteProductsLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWithResult: .failure(.connectivity)) {
+        expect(sut, toCompleteWithResult: .failure(.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
-        }
+        })
     }
     
     func test_load_deliversErrorOnNon200HTTPResponse() {
@@ -47,19 +47,19 @@ class RemoteProductsLoaderTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500]
         
         samples.enumerated().forEach { index, code in
-            expect(sut, toCompleteWithResult: .failure(.invalidData)) {
+            expect(sut, toCompleteWithResult: .failure(.invalidData), when: {
                 client.complete(withStatusCode: code, at: index)
-            }
+            })
         }
     }
     
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWithResult: .failure(.invalidData)) {
+        expect(sut, toCompleteWithResult: .failure(.invalidData), when: {
             let invalidJSON = Data("invalid json".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
-        }
+        })
     }
     
     func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
