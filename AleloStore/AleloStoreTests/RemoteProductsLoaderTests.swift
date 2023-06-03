@@ -67,7 +67,7 @@ class RemoteProductsLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
 
         expect(sut, toCompleteWithResult: .success([]), when: {
-            let emptyListJSON = Data("{\"products\": []}".utf8)
+            let emptyListJSON = makeProductsJSON([])
             client.complete(withStatusCode: 200, data: emptyListJSON)
         })
     }
