@@ -27,11 +27,7 @@ public final class RemoteProductsLoader {
         client.get(from: url) { result in
             switch result {
             case let .success(data, response):
-                if let items = try? ProductsMapper.map(data, response) {
-                    completion(.success(items))
-                } else {
-                    completion(.failure(.invalidData))
-                }
+                completion(ProductsMapper.map(data, from: response))
             case .failure:
                 completion(.failure(.connectivity))
             }

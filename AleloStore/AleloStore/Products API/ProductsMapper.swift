@@ -7,6 +7,10 @@ import Foundation
 internal final class ProductsMapper {
     private struct Root: Decodable {
         let products: [ProductItem]
+        
+        var productsList: [Product] {
+            return products.map { $0.product }
+        }
     }
     
     private struct ProductItem: Decodable {
@@ -45,14 +49,12 @@ internal final class ProductsMapper {
     
     private static var OK_200: Int { return 200 }
     
-    internal static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [Product] {
-        guard response.statusCode == OK_200 else {
-            throw RemoteProductsLoader.Error.invalidData
+    internal static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteProductsLoader.Result {
+        guard response.statusCode == OK_200,
+              let root = try? JSONDecoder().decode(Root.self, from: data) else {
+            return .failure(.invalidData)
         }
         
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-        let root = try decoder.decode(Root.self, from: data)
-        return root.products.map { $0.product }
+        return .success(root.productsList)
     }
 }
