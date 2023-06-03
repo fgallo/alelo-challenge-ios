@@ -47,13 +47,15 @@ class RemoteProductsLoaderTests: XCTestCase {
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
         
-        var capturedError = [RemoteProductsLoader.Error]()
-        sut.load { capturedError.append($0) }
+        let samples = [199, 201, 300, 400, 500]
         
-        let clientError = NSError(domain: "Test", code: 0)
-        client.complete(withStatusCode: 400)
-        
-        XCTAssertEqual(capturedError, [.invalidData])
+        samples.enumerated().forEach { index, code in
+            var capturedError = [RemoteProductsLoader.Error]()
+            sut.load { capturedError.append($0) }
+            
+            client.complete(withStatusCode: code, at: index)
+            XCTAssertEqual(capturedError, [.invalidData])
+        }
     }
     
     // MARK: - Helpers

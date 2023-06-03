@@ -24,7 +24,7 @@ public final class RemoteProductsLoader {
     
     public func load(completion: @escaping (Error) -> Void) {
         client.get(from: url) { error, response in
-            if let error = error {
+            if let _ = error {
                 completion(.connectivity)
             } else {
                 completion(.invalidData)
