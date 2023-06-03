@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4F2B8F072A2BAD91000B1F6D /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
 		4F2B8F0C2A2BAD91000B1F6D /* AleloStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B8F0B2A2BAD91000B1F6D /* AleloStoreTests.swift */; };
+		4F93FF2D2A2BB262008F0BF0 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF2C2A2BB262008F0BF0 /* Product.swift */; };
+		4F93FF2F2A2BB31C008F0BF0 /* ProductSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +27,8 @@
 		4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AleloStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2B8F062A2BAD91000B1F6D /* AleloStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2B8F0B2A2BAD91000B1F6D /* AleloStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreTests.swift; sourceTree = "<group>"; };
+		4F93FF2C2A2BB262008F0BF0 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 		4F2B8F002A2BAD91000B1F6D /* AleloStore */ = {
 			isa = PBXGroup;
 			children = (
+				4F93FF2C2A2BB262008F0BF0 /* Product.swift */,
+				4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */,
 			);
 			path = AleloStore;
 			sourceTree = "<group>";
@@ -140,6 +146,7 @@
 				TargetAttributes = {
 					4F2B8EFD2A2BAD91000B1F6D = {
 						CreatedOnToolsVersion = 14.3;
+						LastSwiftMigration = 1430;
 					};
 					4F2B8F052A2BAD91000B1F6D = {
 						CreatedOnToolsVersion = 14.3;
@@ -187,6 +194,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F93FF2F2A2BB31C008F0BF0 /* ProductSize.swift in Sources */,
+				4F93FF2D2A2BB262008F0BF0 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +340,7 @@
 		4F2B8F112A2BAD91000B1F6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -355,6 +365,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -362,6 +373,7 @@
 		4F2B8F122A2BAD91000B1F6D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -393,6 +405,7 @@
 		4F2B8F142A2BAD91000B1F6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TF59LXWJ93;
@@ -408,6 +421,7 @@
 		4F2B8F152A2BAD91000B1F6D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TF59LXWJ93;

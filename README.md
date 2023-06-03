@@ -46,16 +46,16 @@ Given the customer has connectivity
 
 ### Product
 
-| Property      | Type          |
-|---------------|---------------|
-| `name`        | `String`      |
-| `regularPrice`| `String`      |
-| `salePrice`   | `String`      |
-| `onSale`      | `Bool`        |
-| `imageURL`    | `URL`         |
-| `sizes`       | `[Size]`      |
+| Property      | Type              |
+|---------------|-------------------|
+| `name`        | `String`          |
+| `regularPrice`| `String`          |
+| `salePrice`   | `String`          |
+| `onSale`      | `Bool`            |
+| `imageURL`    | `URL`             |
+| `sizes`       | `[ProductSize]`   |
 
-### Size
+### Product Size
 
 | Property      | Type          |
 |---------------|---------------|
