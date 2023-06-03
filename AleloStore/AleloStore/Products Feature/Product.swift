@@ -21,14 +21,3 @@ public struct Product: Equatable {
         self.sizes = sizes
     }
 }
-
-extension Product: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case name
-        case regularPrice = "regular_price"
-        case salePrice = "actual_price"
-        case onSale = "on_sale"
-        case imageURL = "image"
-        case sizes
-    }
-}
