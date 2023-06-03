@@ -11,6 +11,7 @@
 		4F2B8F0C2A2BAD91000B1F6D /* AleloStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B8F0B2A2BAD91000B1F6D /* AleloStoreTests.swift */; };
 		4F93FF2D2A2BB262008F0BF0 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF2C2A2BB262008F0BF0 /* Product.swift */; };
 		4F93FF2F2A2BB31C008F0BF0 /* ProductSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */; };
+		4F93FF3B2A2BB691008F0BF0 /* ProductsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF3A2A2BB691008F0BF0 /* ProductsLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		4F2B8F0B2A2BAD91000B1F6D /* AleloStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreTests.swift; sourceTree = "<group>"; };
 		4F93FF2C2A2BB262008F0BF0 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSize.swift; sourceTree = "<group>"; };
+		4F93FF3A2A2BB691008F0BF0 /* ProductsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				4F93FF2C2A2BB262008F0BF0 /* Product.swift */,
 				4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */,
+				4F93FF3A2A2BB691008F0BF0 /* ProductsLoader.swift */,
 			);
 			path = AleloStore;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			files = (
 				4F93FF2F2A2BB31C008F0BF0 /* ProductSize.swift in Sources */,
 				4F93FF2D2A2BB262008F0BF0 /* Product.swift in Sources */,
+				4F93FF3B2A2BB691008F0BF0 /* ProductsLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
