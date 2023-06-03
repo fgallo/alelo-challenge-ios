@@ -36,12 +36,10 @@ class RemoteProductsLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         client.error = NSError(domain: "Test", code: 0)
         
-        var capturedError: RemoteProductsLoader.Error?
-        sut.load { error in
-            capturedError = error
-        }
+        var capturedError = [RemoteProductsLoader.Error]()
+        sut.load { capturedError.append($0) }
         
-        XCTAssertEqual(capturedError, .connectivity)
+        XCTAssertEqual(capturedError, [.connectivity])
     }
     
     // MARK: - Helpers
