@@ -9,10 +9,10 @@ public struct Product: Equatable {
     public let regularPrice: String
     public let salePrice: String
     public let onSale: Bool
-    public let imageURL: URL
+    public let imageURL: URL?
     public let sizes: [ProductSize]
     
-    public init(name: String, regularPrice: String, salePrice: String, onSale: Bool, imageURL: URL, sizes: [ProductSize]) {
+    public init(name: String, regularPrice: String, salePrice: String, onSale: Bool, imageURL: URL?, sizes: [ProductSize]) {
         self.name = name
         self.regularPrice = regularPrice
         self.salePrice = salePrice

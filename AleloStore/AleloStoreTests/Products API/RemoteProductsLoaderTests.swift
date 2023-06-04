@@ -80,7 +80,7 @@ class RemoteProductsLoaderTests: XCTestCase {
             regularPrice: "2",
             salePrice: "1",
             onSale: true,
-            imageURL: URL(string: "https://a-url.com")!,
+            imageURL: URL(string: "https://a-url.com"),
             size: "S",
             sku: "123",
             available: true
@@ -91,7 +91,7 @@ class RemoteProductsLoaderTests: XCTestCase {
             regularPrice: "3",
             salePrice: "3",
             onSale: false,
-            imageURL: URL(string: "https://another-url.com")!,
+            imageURL: URL(string: "https://another-url.com"),
             size: "L",
             sku: "321",
             available: true
@@ -130,7 +130,8 @@ class RemoteProductsLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func makeProduct(name: String, regularPrice: String, salePrice: String, onSale: Bool, imageURL: URL, size: String, sku: String, available: Bool) -> (model: Product, json: [String: Any]) {
+    private func makeProduct(name: String, regularPrice: String, salePrice: String, onSale: Bool,
+                             imageURL: URL?, size: String, sku: String, available: Bool) -> (model: Product, json: [String: Any]) {
         
         let size = ProductSize(
             size: size,
@@ -147,20 +148,20 @@ class RemoteProductsLoaderTests: XCTestCase {
             sizes: [size]
         )
         
-        let json = [
+        let json = ([
             "name": model.name,
             "regular_price": model.regularPrice,
             "actual_price": model.salePrice,
             "on_sale": model.onSale,
-            "image": model.imageURL.absoluteString,
+            "image": model.imageURL?.absoluteString,
             "sizes": [[
                 "size": size.size,
                 "sku": size.sku,
                 "available": size.available
             ] as [String : Any]]
-        ] as [String : Any]
+        ] as [String : Any?])
         
-        return (model, json)
+        return (model, json.compactMapValues { $0 })
     }
     
     private func makeProductsJSON(_ items: [[String: Any]]) -> Data {
