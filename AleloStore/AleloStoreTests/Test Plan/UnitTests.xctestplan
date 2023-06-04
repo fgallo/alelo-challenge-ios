@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "0439BD20-62EC-452D-98E2-68E615F4F36A",
+      "name" : "Test Scheme Action",
+      "options" : {
+        "testExecutionOrdering" : "random"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:AleloStore.xcodeproj",
+        "identifier" : "4F2B8F052A2BAD91000B1F6D",
+        "name" : "AleloStoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}
