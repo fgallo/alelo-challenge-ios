@@ -1,0 +1,33 @@
+{
+  "configurations" : [
+    {
+      "id" : "EACA91F9-01F2-4A14-A448-CF5F2A5BC236",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:AleloStore.xcodeproj",
+        "identifier" : "4FFC29092A2D508F003C20CB",
+        "name" : "AleloStoreAPIEndToEndTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:AleloStore.xcodeproj",
+        "identifier" : "4F2B8F052A2BAD91000B1F6D",
+        "name" : "AleloStoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}
