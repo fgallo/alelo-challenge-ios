@@ -6,7 +6,7 @@ import XCTest
 import UIKit
 import AleloStore
 
-final class ProductsViewController: UIViewController {
+final class ProductsViewController: UITableViewController {
     private var loader: ProductsLoader?
     
     convenience init(loader: ProductsLoader) {
@@ -17,7 +17,16 @@ final class ProductsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loader?.load { _ in }
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
+        refreshControl?.beginRefreshing()
+        load()
+    }
+    
+    @objc private func load() {
+        loader?.load { [weak self] _ in
+            self?.refreshControl?.endRefreshing()
+        }
     }
 }
 
@@ -37,6 +46,51 @@ final class ProductsViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 1)
     }
     
+    func test_userInitiatedProductsReload_loadsProducts() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.simulateUserInitiatedProductsReload()
+        XCTAssertEqual(loader.loadCallCount, 2)
+        
+        sut.simulateUserInitiatedProductsReload()
+        XCTAssertEqual(loader.loadCallCount, 3)
+    }
+    
+    func test_viewDidLoad_showsLoadingIndicator() {
+        let (sut, _) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+    }
+    
+    func test_viewDidLoad_hidesLoadingIndicatorOnLoaderCompletion() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeProductsLoading()
+        
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+    }
+    
+    func test_userInitiatedProductsReload_showsLoadingIndicator() {
+        let (sut, _) = makeSUT()
+        
+        sut.simulateUserInitiatedProductsReload()
+        
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+    }
+    
+    func test_userInitiatedProductsReload_hidesLoadingIndicatorOnLoaderCompletion() {
+        let (sut, loader) = makeSUT()
+        
+        sut.simulateUserInitiatedProductsReload()
+        loader.completeProductsLoading()
+        
+        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: ProductsViewController, loader: LoaderSpy) {
@@ -48,11 +102,35 @@ final class ProductsViewControllerTests: XCTestCase {
     }
     
     class LoaderSpy: ProductsLoader {
-        private(set) var loadCallCount: Int = 0
+        private var completions = [(LoadProductsResult) -> Void]()
         
-        func load(completion: @escaping (AleloStore.LoadProductsResult) -> Void) {
-            loadCallCount += 1
+        var loadCallCount: Int {
+            return completions.count
+        }
+        
+        func load(completion: @escaping (LoadProductsResult) -> Void) {
+            completions.append(completion)
+        }
+        
+        func completeProductsLoading() {
+            completions[0](.success([]))
         }
     }
     
+}
+
+private extension ProductsViewController {
+    func simulateUserInitiatedProductsReload() {
+        refreshControl?.simulatePullToRefresh()
+    }
+}
+
+private extension UIRefreshControl {
+    func simulatePullToRefresh() {
+        allTargets.forEach { target in
+            actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
+                (target as NSObject).perform(Selector($0))
+            }
+        }
+    }
 }
