@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "0F37CAAE-0C7C-4D82-856F-A677724593C8",
+      "id" : "F01D31E0-D271-4B43-B78E-B50584C212FA",
       "name" : "Configuration 1",
       "options" : {
 
@@ -16,8 +16,8 @@
       "parallelizable" : true,
       "target" : {
         "containerPath" : "container:AleloStore.xcodeproj",
-        "identifier" : "4FFC29092A2D508F003C20CB",
-        "name" : "AleloStoreAPIEndToEndTests"
+        "identifier" : "4FFC29252A2E5244003C20CB",
+        "name" : "AleloStoreiOSTests"
       }
     }
   ],

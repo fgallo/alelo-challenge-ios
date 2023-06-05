@@ -21,6 +21,9 @@
 		4FFC290D2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */; };
 		4FFC290E2A2D508F003C20CB /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
 		4FFC29142A2D602B003C20CB /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */; };
+		4FFC29272A2E5245003C20CB /* AleloStoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFC291F2A2E5244003C20CB /* AleloStoreiOS.framework */; };
+		4FFC292C2A2E5245003C20CB /* AleloStoreiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC292B2A2E5245003C20CB /* AleloStoreiOSTests.swift */; };
+		4FFC292D2A2E5245003C20CB /* AleloStoreiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FFC29212A2E5244003C20CB /* AleloStoreiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4F2B8EFD2A2BAD91000B1F6D;
 			remoteInfo = AleloStore;
+		};
+		4FFC29282A2E5245003C20CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F2B8EF52A2BAD91000B1F6D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FFC291E2A2E5244003C20CB;
+			remoteInfo = AleloStoreiOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -58,6 +68,11 @@
 		4FFC29172A2D6684003C20CB /* AleloStoreUnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreUnitTests.xctestplan; path = AleloStoreTests/AleloStoreUnitTests.xctestplan; sourceTree = SOURCE_ROOT; };
 		4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreAPIEndToEndTests.xctestplan; path = AleloStoreTests/AleloStoreAPIEndToEndTests.xctestplan; sourceTree = SOURCE_ROOT; };
 		4FFC29192A2D67AB003C20CB /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CI.xctestplan; path = AleloStoreTests/CI.xctestplan; sourceTree = SOURCE_ROOT; };
+		4FFC291F2A2E5244003C20CB /* AleloStoreiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AleloStoreiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FFC29212A2E5244003C20CB /* AleloStoreiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AleloStoreiOS.h; sourceTree = "<group>"; };
+		4FFC29262A2E5244003C20CB /* AleloStoreiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FFC292B2A2E5245003C20CB /* AleloStoreiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreiOSTests.swift; sourceTree = "<group>"; };
+		4FFC29342A2E5342003C20CB /* AleloStoreiOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; name = AleloStoreiOS.xctestplan; path = AleloStoreTests/AleloStoreiOS.xctestplan; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +99,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FFC291C2A2E5244003C20CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FFC29232A2E5244003C20CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FFC29272A2E5245003C20CB /* AleloStoreiOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -93,6 +123,8 @@
 				4F2B8F002A2BAD91000B1F6D /* AleloStore */,
 				4F2B8F0A2A2BAD91000B1F6D /* AleloStoreTests */,
 				4FFC290B2A2D508F003C20CB /* AleloStoreAPIEndToEndTests */,
+				4FFC29202A2E5244003C20CB /* AleloStoreiOS */,
+				4FFC292A2A2E5245003C20CB /* AleloStoreiOSTests */,
 				4F2B8EFF2A2BAD91000B1F6D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,6 +135,8 @@
 				4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */,
 				4F2B8F062A2BAD91000B1F6D /* AleloStoreTests.xctest */,
 				4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */,
+				4FFC291F2A2E5244003C20CB /* AleloStoreiOS.framework */,
+				4FFC29262A2E5244003C20CB /* AleloStoreiOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +204,7 @@
 				4FFC29172A2D6684003C20CB /* AleloStoreUnitTests.xctestplan */,
 				4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */,
 				4FFC29192A2D67AB003C20CB /* CI.xctestplan */,
+				4FFC29342A2E5342003C20CB /* AleloStoreiOS.xctestplan */,
 			);
 			path = "Test Plan";
 			sourceTree = "<group>";
@@ -182,6 +217,22 @@
 			path = AleloStoreAPIEndToEndTests;
 			sourceTree = "<group>";
 		};
+		4FFC29202A2E5244003C20CB /* AleloStoreiOS */ = {
+			isa = PBXGroup;
+			children = (
+				4FFC29212A2E5244003C20CB /* AleloStoreiOS.h */,
+			);
+			path = AleloStoreiOS;
+			sourceTree = "<group>";
+		};
+		4FFC292A2A2E5245003C20CB /* AleloStoreiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				4FFC292B2A2E5245003C20CB /* AleloStoreiOSTests.swift */,
+			);
+			path = AleloStoreiOSTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -189,6 +240,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FFC291A2A2E5244003C20CB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FFC292D2A2E5245003C20CB /* AleloStoreiOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +308,42 @@
 			productReference = 4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4FFC291E2A2E5244003C20CB /* AleloStoreiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FFC292E2A2E5245003C20CB /* Build configuration list for PBXNativeTarget "AleloStoreiOS" */;
+			buildPhases = (
+				4FFC291A2A2E5244003C20CB /* Headers */,
+				4FFC291B2A2E5244003C20CB /* Sources */,
+				4FFC291C2A2E5244003C20CB /* Frameworks */,
+				4FFC291D2A2E5244003C20CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AleloStoreiOS;
+			productName = AleloStoreiOS;
+			productReference = 4FFC291F2A2E5244003C20CB /* AleloStoreiOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4FFC29252A2E5244003C20CB /* AleloStoreiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FFC29312A2E5245003C20CB /* Build configuration list for PBXNativeTarget "AleloStoreiOSTests" */;
+			buildPhases = (
+				4FFC29222A2E5244003C20CB /* Sources */,
+				4FFC29232A2E5244003C20CB /* Frameworks */,
+				4FFC29242A2E5244003C20CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FFC29292A2E5245003C20CB /* PBXTargetDependency */,
+			);
+			name = AleloStoreiOSTests;
+			productName = AleloStoreiOSTests;
+			productReference = 4FFC29262A2E5244003C20CB /* AleloStoreiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -269,6 +364,12 @@
 					4FFC29092A2D508F003C20CB = {
 						CreatedOnToolsVersion = 14.3;
 					};
+					4FFC291E2A2E5244003C20CB = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					4FFC29252A2E5244003C20CB = {
+						CreatedOnToolsVersion = 14.3;
+					};
 				};
 			};
 			buildConfigurationList = 4F2B8EF82A2BAD91000B1F6D /* Build configuration list for PBXProject "AleloStore" */;
@@ -287,6 +388,8 @@
 				4F2B8EFD2A2BAD91000B1F6D /* AleloStore */,
 				4F2B8F052A2BAD91000B1F6D /* AleloStoreTests */,
 				4FFC29092A2D508F003C20CB /* AleloStoreAPIEndToEndTests */,
+				4FFC291E2A2E5244003C20CB /* AleloStoreiOS */,
+				4FFC29252A2E5244003C20CB /* AleloStoreiOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -307,6 +410,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4FFC29082A2D508F003C20CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FFC291D2A2E5244003C20CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FFC29242A2E5244003C20CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -349,6 +466,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FFC291B2A2E5244003C20CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FFC29222A2E5244003C20CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FFC292C2A2E5245003C20CB /* AleloStoreiOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -361,6 +493,11 @@
 			isa = PBXTargetDependency;
 			target = 4F2B8EFD2A2BAD91000B1F6D /* AleloStore */;
 			targetProxy = 4FFC290F2A2D508F003C20CB /* PBXContainerItemProxy */;
+		};
+		4FFC29292A2E5245003C20CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FFC291E2A2E5244003C20CB /* AleloStoreiOS */;
+			targetProxy = 4FFC29282A2E5245003C20CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -623,6 +760,110 @@
 			};
 			name = Release;
 		};
+		4FFC292F2A2E5245003C20CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TF59LXWJ93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStoreiOS;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4FFC29302A2E5245003C20CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TF59LXWJ93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStoreiOS;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4FFC29322A2E5245003C20CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TF59LXWJ93;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStoreiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4FFC29332A2E5245003C20CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TF59LXWJ93;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStoreiOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -658,6 +899,24 @@
 			buildConfigurations = (
 				4FFC29122A2D508F003C20CB /* Debug */,
 				4FFC29132A2D508F003C20CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FFC292E2A2E5245003C20CB /* Build configuration list for PBXNativeTarget "AleloStoreiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FFC292F2A2E5245003C20CB /* Debug */,
+				4FFC29302A2E5245003C20CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FFC29312A2E5245003C20CB /* Build configuration list for PBXNativeTarget "AleloStoreiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FFC29322A2E5245003C20CB /* Debug */,
+				4FFC29332A2E5245003C20CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
