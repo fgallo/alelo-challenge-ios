@@ -62,7 +62,7 @@ final class ProductsViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
     }
     
     func test_viewDidLoad_hidesLoadingIndicatorOnLoaderCompletion() {
@@ -71,7 +71,7 @@ final class ProductsViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         loader.completeProductsLoading()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+        XCTAssertFalse(sut.isShowingLoadingIndicator)
     }
     
     func test_userInitiatedProductsReload_showsLoadingIndicator() {
@@ -79,7 +79,7 @@ final class ProductsViewControllerTests: XCTestCase {
         
         sut.simulateUserInitiatedProductsReload()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, true)
+        XCTAssertTrue(sut.isShowingLoadingIndicator)
     }
     
     func test_userInitiatedProductsReload_hidesLoadingIndicatorOnLoaderCompletion() {
@@ -88,7 +88,7 @@ final class ProductsViewControllerTests: XCTestCase {
         sut.simulateUserInitiatedProductsReload()
         loader.completeProductsLoading()
         
-        XCTAssertEqual(sut.refreshControl?.isRefreshing, false)
+        XCTAssertFalse(sut.isShowingLoadingIndicator)
     }
     
     // MARK: - Helpers
@@ -122,6 +122,10 @@ final class ProductsViewControllerTests: XCTestCase {
 private extension ProductsViewController {
     func simulateUserInitiatedProductsReload() {
         refreshControl?.simulatePullToRefresh()
+    }
+    
+    var isShowingLoadingIndicator: Bool {
+        return refreshControl?.isRefreshing == true
     }
 }
 
