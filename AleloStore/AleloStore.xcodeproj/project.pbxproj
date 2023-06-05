@@ -55,9 +55,9 @@
 		4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreAPIEndToEndTests.swift; sourceTree = "<group>"; };
-		4FFC29172A2D6684003C20CB /* AleloStoreUnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; name = AleloStoreUnitTests.xctestplan; path = AleloStoreTests/AleloStoreUnitTests.xctestplan; sourceTree = SOURCE_ROOT; };
-		4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; name = AleloStoreAPIEndToEndTests.xctestplan; path = AleloStoreTests/AleloStoreAPIEndToEndTests.xctestplan; sourceTree = SOURCE_ROOT; };
-		4FFC29192A2D67AB003C20CB /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; name = CI.xctestplan; path = AleloStoreTests/CI.xctestplan; sourceTree = SOURCE_ROOT; };
+		4FFC29172A2D6684003C20CB /* AleloStoreUnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreUnitTests.xctestplan; path = AleloStoreTests/AleloStoreUnitTests.xctestplan; sourceTree = SOURCE_ROOT; };
+		4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreAPIEndToEndTests.xctestplan; path = AleloStoreTests/AleloStoreAPIEndToEndTests.xctestplan; sourceTree = SOURCE_ROOT; };
+		4FFC29192A2D67AB003C20CB /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CI.xctestplan; path = AleloStoreTests/CI.xctestplan; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -512,6 +512,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -546,6 +547,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -563,6 +565,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
@@ -580,6 +583,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
@@ -596,6 +600,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStoreAPIEndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
@@ -612,6 +617,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStoreAPIEndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
