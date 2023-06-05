@@ -120,6 +120,7 @@
 		4F2B8EF42A2BAD91000B1F6D = {
 			isa = PBXGroup;
 			children = (
+				4FFC29052A2D4B69003C20CB /* Test Plans */,
 				4F2B8F002A2BAD91000B1F6D /* AleloStore */,
 				4F2B8F0A2A2BAD91000B1F6D /* AleloStoreTests */,
 				4FFC290B2A2D508F003C20CB /* AleloStoreAPIEndToEndTests */,
@@ -153,7 +154,6 @@
 		4F2B8F0A2A2BAD91000B1F6D /* AleloStoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				4FFC29052A2D4B69003C20CB /* Test Plan */,
 				4FF4192D2A2C2CA800E186A9 /* Helpers */,
 				4F8698DE2A2BF26B006807C0 /* Products API */,
 			);
@@ -198,7 +198,7 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		4FFC29052A2D4B69003C20CB /* Test Plan */ = {
+		4FFC29052A2D4B69003C20CB /* Test Plans */ = {
 			isa = PBXGroup;
 			children = (
 				4FFC29172A2D6684003C20CB /* AleloStoreUnitTests.xctestplan */,
@@ -206,7 +206,7 @@
 				4FFC29192A2D67AB003C20CB /* CI.xctestplan */,
 				4FFC29342A2E5342003C20CB /* AleloStoreiOS.xctestplan */,
 			);
-			path = "Test Plan";
+			path = "Test Plans";
 			sourceTree = "<group>";
 		};
 		4FFC290B2A2D508F003C20CB /* AleloStoreAPIEndToEndTests */ = {
