@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F2B8F072A2BAD91000B1F6D /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
+		4F704CB92A2EA63C00E05741 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F704CB82A2EA63C00E05741 /* ProductsViewController.swift */; };
 		4F7F77012A2E970C0057F4FD /* ProductsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F77002A2E970C0057F4FD /* ProductsViewControllerTests.swift */; };
 		4F7F77032A2E99B20057F4FD /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; platformFilter = ios; };
 		4F7F77042A2E99B20057F4FD /* AleloStore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -26,7 +27,6 @@
 		4FFC290E2A2D508F003C20CB /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
 		4FFC29142A2D602B003C20CB /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		4FFC29272A2E5245003C20CB /* AleloStoreiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFC291F2A2E5244003C20CB /* AleloStoreiOS.framework */; };
-		4FFC292D2A2E5245003C20CB /* AleloStoreiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FFC29212A2E5244003C20CB /* AleloStoreiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +77,7 @@
 /* Begin PBXFileReference section */
 		4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AleloStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2B8F062A2BAD91000B1F6D /* AleloStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F704CB82A2EA63C00E05741 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		4F7F77002A2E970C0057F4FD /* ProductsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewControllerTests.swift; sourceTree = "<group>"; };
 		4F8490F52A2E71AF0079A4D8 /* CI_iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CI_iOS.xctestplan; path = "Test Plans/CI_iOS.xctestplan"; sourceTree = SOURCE_ROOT; };
 		4F8698E02A2BFCEB006807C0 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
@@ -95,7 +96,6 @@
 		4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreAPIEndToEndTests.xctestplan; path = "Test Plans/AleloStoreAPIEndToEndTests.xctestplan"; sourceTree = SOURCE_ROOT; };
 		4FFC29192A2D67AB003C20CB /* CI_macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CI_macOS.xctestplan; path = "Test Plans/CI_macOS.xctestplan"; sourceTree = SOURCE_ROOT; };
 		4FFC291F2A2E5244003C20CB /* AleloStoreiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AleloStoreiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FFC29212A2E5244003C20CB /* AleloStoreiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AleloStoreiOS.h; sourceTree = "<group>"; };
 		4FFC29262A2E5244003C20CB /* AleloStoreiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFC29342A2E5342003C20CB /* AleloStoreiOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreiOS.xctestplan; path = "Test Plans/AleloStoreiOS.xctestplan"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -255,7 +255,7 @@
 		4FFC29202A2E5244003C20CB /* AleloStoreiOS */ = {
 			isa = PBXGroup;
 			children = (
-				4FFC29212A2E5244003C20CB /* AleloStoreiOS.h */,
+				4F704CB82A2EA63C00E05741 /* ProductsViewController.swift */,
 			);
 			path = AleloStoreiOS;
 			sourceTree = "<group>";
@@ -282,7 +282,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FFC292D2A2E5245003C20CB /* AleloStoreiOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +402,7 @@
 					};
 					4FFC291E2A2E5244003C20CB = {
 						CreatedOnToolsVersion = 14.3;
+						LastSwiftMigration = 1430;
 					};
 					4FFC29252A2E5244003C20CB = {
 						CreatedOnToolsVersion = 14.3;
@@ -507,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F704CB92A2EA63C00E05741 /* ProductsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,6 +808,7 @@
 		4FFC292F2A2E5245003C20CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -832,6 +834,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -840,6 +843,7 @@
 		4FFC29302A2E5245003C20CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -874,6 +878,7 @@
 		4FFC29322A2E5245003C20CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TF59LXWJ93;
@@ -892,6 +897,7 @@
 		4FFC29332A2E5245003C20CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TF59LXWJ93;

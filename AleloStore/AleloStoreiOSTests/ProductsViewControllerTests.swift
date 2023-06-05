@@ -5,30 +5,7 @@
 import XCTest
 import UIKit
 import AleloStore
-
-final class ProductsViewController: UITableViewController {
-    private var loader: ProductsLoader?
-    
-    convenience init(loader: ProductsLoader) {
-        self.init()
-        self.loader = loader
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
-        load()
-    }
-    
-    @objc private func load() {
-        refreshControl?.beginRefreshing()
-        loader?.load { [weak self] _ in
-            self?.refreshControl?.endRefreshing()
-        }
-    }
-}
+import AleloStoreiOS
 
 final class ProductsViewControllerTests: XCTestCase {
     
