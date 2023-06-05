@@ -1,6 +1,6 @@
 # Alelo iOS Challenge App Case
 
-[![Build Status](https://app.bitrise.io/app/5aebc500-e2cd-4c6a-9343-3b21a56de4c8/status.svg?token=2l1-ZEyfnENX3RzWTBgd0g&branch=master)](https://app.bitrise.io/app/5aebc500-e2cd-4c6a-9343-3b21a56de4c8)
+![](https://app.bitrise.io/app/5aebc500-e2cd-4c6a-9343-3b21a56de4c8/status.svg?token=2l1-ZEyfnENX3RzWTBgd0g)
 
 ## Product List Feature Specs
 
