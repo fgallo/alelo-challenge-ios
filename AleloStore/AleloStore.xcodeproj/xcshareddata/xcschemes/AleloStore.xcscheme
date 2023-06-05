@@ -29,7 +29,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:AleloStoreTests/Products API/Test Plan/UnitTests.xctestplan"
+            reference = "container:AleloStoreTests/AleloStoreUnitTests.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

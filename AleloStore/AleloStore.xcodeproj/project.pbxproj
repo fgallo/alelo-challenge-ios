@@ -53,9 +53,10 @@
 		4F9F3D002A2BE5DF004134E5 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		4F9F3D022A2BE654004134E5 /* ProductsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsMapper.swift; sourceTree = "<group>"; };
 		4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
-		4FFC29042A2D4AD2003C20CB /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
 		4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreAPIEndToEndTests.swift; sourceTree = "<group>"; };
+		4FFC29172A2D6684003C20CB /* AleloStoreUnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; name = AleloStoreUnitTests.xctestplan; path = AleloStoreTests/AleloStoreUnitTests.xctestplan; sourceTree = SOURCE_ROOT; };
+		4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; name = AleloStoreAPIEndToEndTests.xctestplan; path = AleloStoreTests/AleloStoreAPIEndToEndTests.xctestplan; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +166,8 @@
 		4FFC29052A2D4B69003C20CB /* Test Plan */ = {
 			isa = PBXGroup;
 			children = (
-				4FFC29042A2D4AD2003C20CB /* UnitTests.xctestplan */,
+				4FFC29172A2D6684003C20CB /* AleloStoreUnitTests.xctestplan */,
+				4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */,
 			);
 			path = "Test Plan";
 			sourceTree = "<group>";

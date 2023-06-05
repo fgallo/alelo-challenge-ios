@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "0F37CAAE-0C7C-4D82-856F-A677724593C8",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:AleloStore.xcodeproj",
+        "identifier" : "4FFC29092A2D508F003C20CB",
+        "name" : "AleloStoreAPIEndToEndTests"
+      }
+    }
+  ],
+  "version" : 1
+}
