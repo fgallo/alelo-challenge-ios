@@ -24,15 +24,13 @@ final class ProductsViewController: UIViewController {
 final class ProductsViewControllerTests: XCTestCase {
     
     func test_init_doesNotLoadProducts() {
-        let loader = LoaderSpy()
-        _ = ProductsViewController(loader: loader)
+        let (_, loader) = makeSUT()
         
         XCTAssertEqual(loader.loadCallCount, 0)
     }
     
     func test_viewDidLoad_loadsProducts() {
-        let loader = LoaderSpy()
-        let sut = ProductsViewController(loader: loader)
+        let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
         
@@ -40,6 +38,14 @@ final class ProductsViewControllerTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: ProductsViewController, loader: LoaderSpy) {
+        let loader = LoaderSpy()
+        let sut = ProductsViewController(loader: loader)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        return (sut, loader)
+    }
     
     class LoaderSpy: ProductsLoader {
         private(set) var loadCallCount: Int = 0

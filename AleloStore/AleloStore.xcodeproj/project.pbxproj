@@ -11,6 +11,7 @@
 		4F7F77012A2E970C0057F4FD /* ProductsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F77002A2E970C0057F4FD /* ProductsViewControllerTests.swift */; };
 		4F7F77032A2E99B20057F4FD /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; platformFilter = ios; };
 		4F7F77042A2E99B20057F4FD /* AleloStore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F7F77082A2E9B410057F4FD /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		4F8698E12A2BFCEB006807C0 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8698E02A2BFCEB006807C0 /* URLSessionHTTPClientTests.swift */; };
 		4F93FF2D2A2BB262008F0BF0 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF2C2A2BB262008F0BF0 /* Product.swift */; };
 		4F93FF2F2A2BB31C008F0BF0 /* ProductSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */; };
@@ -514,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F7F77012A2E970C0057F4FD /* ProductsViewControllerTests.swift in Sources */,
+				4F7F77082A2E9B410057F4FD /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
