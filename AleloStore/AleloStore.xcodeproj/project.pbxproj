@@ -53,6 +53,7 @@
 /* Begin PBXFileReference section */
 		4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AleloStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2B8F062A2BAD91000B1F6D /* AleloStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F8490F52A2E71AF0079A4D8 /* CI_iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; path = CI_iOS.xctestplan; sourceTree = SOURCE_ROOT; };
 		4F8698E02A2BFCEB006807C0 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		4F93FF2C2A2BB262008F0BF0 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSize.swift; sourceTree = "<group>"; };
@@ -65,14 +66,14 @@
 		4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreAPIEndToEndTests.swift; sourceTree = "<group>"; };
-		4FFC29172A2D6684003C20CB /* AleloStoreUnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreUnitTests.xctestplan; path = AleloStoreTests/AleloStoreUnitTests.xctestplan; sourceTree = SOURCE_ROOT; };
-		4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreAPIEndToEndTests.xctestplan; path = AleloStoreTests/AleloStoreAPIEndToEndTests.xctestplan; sourceTree = SOURCE_ROOT; };
-		4FFC29192A2D67AB003C20CB /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CI.xctestplan; path = AleloStoreTests/CI.xctestplan; sourceTree = SOURCE_ROOT; };
+		4FFC29172A2D6684003C20CB /* AleloStoreUnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreUnitTests.xctestplan; path = "Test Plans/AleloStoreUnitTests.xctestplan"; sourceTree = SOURCE_ROOT; };
+		4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreAPIEndToEndTests.xctestplan; path = "Test Plans/AleloStoreAPIEndToEndTests.xctestplan"; sourceTree = SOURCE_ROOT; };
+		4FFC29192A2D67AB003C20CB /* CI_macOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CI_macOS.xctestplan; path = "Test Plans/CI_macOS.xctestplan"; sourceTree = SOURCE_ROOT; };
 		4FFC291F2A2E5244003C20CB /* AleloStoreiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AleloStoreiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFC29212A2E5244003C20CB /* AleloStoreiOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AleloStoreiOS.h; sourceTree = "<group>"; };
 		4FFC29262A2E5244003C20CB /* AleloStoreiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFC292B2A2E5245003C20CB /* AleloStoreiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreiOSTests.swift; sourceTree = "<group>"; };
-		4FFC29342A2E5342003C20CB /* AleloStoreiOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; name = AleloStoreiOS.xctestplan; path = AleloStoreTests/AleloStoreiOS.xctestplan; sourceTree = SOURCE_ROOT; };
+		4FFC29342A2E5342003C20CB /* AleloStoreiOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = AleloStoreiOS.xctestplan; path = "Test Plans/AleloStoreiOS.xctestplan"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,9 +203,10 @@
 			isa = PBXGroup;
 			children = (
 				4FFC29172A2D6684003C20CB /* AleloStoreUnitTests.xctestplan */,
-				4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */,
-				4FFC29192A2D67AB003C20CB /* CI.xctestplan */,
 				4FFC29342A2E5342003C20CB /* AleloStoreiOS.xctestplan */,
+				4FFC29182A2D66B9003C20CB /* AleloStoreAPIEndToEndTests.xctestplan */,
+				4FFC29192A2D67AB003C20CB /* CI_macOS.xctestplan */,
+				4F8490F52A2E71AF0079A4D8 /* CI_iOS.xctestplan */,
 			);
 			path = "Test Plans";
 			sourceTree = "<group>";
