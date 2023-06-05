@@ -19,6 +19,14 @@
         "identifier" : "4F2B8F052A2BAD91000B1F6D",
         "name" : "AleloStoreTests"
       }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:AleloStore.xcodeproj",
+        "identifier" : "4FFC29092A2D508F003C20CB",
+        "name" : "AleloStoreAPIEndToEndTests"
+      }
     }
   ],
   "version" : 1

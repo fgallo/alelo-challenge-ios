@@ -18,10 +18,20 @@
 		4F9F3D012A2BE5DF004134E5 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F3D002A2BE5DF004134E5 /* HTTPClient.swift */; };
 		4F9F3D032A2BE654004134E5 /* ProductsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F3D022A2BE654004134E5 /* ProductsMapper.swift */; };
 		4FF4192F2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */; };
+		4FFC290D2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */; };
+		4FFC290E2A2D508F003C20CB /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
+		4FFC29142A2D602B003C20CB /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		4F2B8F082A2BAD91000B1F6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F2B8EF52A2BAD91000B1F6D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F2B8EFD2A2BAD91000B1F6D;
+			remoteInfo = AleloStore;
+		};
+		4FFC290F2A2D508F003C20CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4F2B8EF52A2BAD91000B1F6D /* Project object */;
 			proxyType = 1;
@@ -44,6 +54,8 @@
 		4F9F3D022A2BE654004134E5 /* ProductsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsMapper.swift; sourceTree = "<group>"; };
 		4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		4FFC29042A2D4AD2003C20CB /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
+		4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreAPIEndToEndTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FFC29072A2D508F003C20CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FFC290E2A2D508F003C20CB /* AleloStore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -70,6 +90,7 @@
 			children = (
 				4F2B8F002A2BAD91000B1F6D /* AleloStore */,
 				4F2B8F0A2A2BAD91000B1F6D /* AleloStoreTests */,
+				4FFC290B2A2D508F003C20CB /* AleloStoreAPIEndToEndTests */,
 				4F2B8EFF2A2BAD91000B1F6D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +100,7 @@
 			children = (
 				4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */,
 				4F2B8F062A2BAD91000B1F6D /* AleloStoreTests.xctest */,
+				4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				4FFC29052A2D4B69003C20CB /* Test Plan */,
+				4FF4192D2A2C2CA800E186A9 /* Helpers */,
 				4F8698DE2A2BF26B006807C0 /* Products API */,
 			);
 			path = AleloStoreTests;
@@ -104,7 +127,6 @@
 		4F8698DE2A2BF26B006807C0 /* Products API */ = {
 			isa = PBXGroup;
 			children = (
-				4FF4192D2A2C2CA800E186A9 /* Helpers */,
 				4F93FF3D2A2BB7EC008F0BF0 /* RemoteProductsLoaderTests.swift */,
 				4F8698E02A2BFCEB006807C0 /* URLSessionHTTPClientTests.swift */,
 			);
@@ -146,6 +168,14 @@
 				4FFC29042A2D4AD2003C20CB /* UnitTests.xctestplan */,
 			);
 			path = "Test Plan";
+			sourceTree = "<group>";
+		};
+		4FFC290B2A2D508F003C20CB /* AleloStoreAPIEndToEndTests */ = {
+			isa = PBXGroup;
+			children = (
+				4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */,
+			);
+			path = AleloStoreAPIEndToEndTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +227,24 @@
 			productReference = 4F2B8F062A2BAD91000B1F6D /* AleloStoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4FFC29092A2D508F003C20CB /* AleloStoreAPIEndToEndTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FFC29112A2D508F003C20CB /* Build configuration list for PBXNativeTarget "AleloStoreAPIEndToEndTests" */;
+			buildPhases = (
+				4FFC29062A2D508F003C20CB /* Sources */,
+				4FFC29072A2D508F003C20CB /* Frameworks */,
+				4FFC29082A2D508F003C20CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FFC29102A2D508F003C20CB /* PBXTargetDependency */,
+			);
+			name = AleloStoreAPIEndToEndTests;
+			productName = AleloStoreAPIEndToEndTests;
+			productReference = 4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -212,6 +260,9 @@
 						LastSwiftMigration = 1430;
 					};
 					4F2B8F052A2BAD91000B1F6D = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					4FFC29092A2D508F003C20CB = {
 						CreatedOnToolsVersion = 14.3;
 					};
 				};
@@ -231,6 +282,7 @@
 			targets = (
 				4F2B8EFD2A2BAD91000B1F6D /* AleloStore */,
 				4F2B8F052A2BAD91000B1F6D /* AleloStoreTests */,
+				4FFC29092A2D508F003C20CB /* AleloStoreAPIEndToEndTests */,
 			);
 		};
 /* End PBXProject section */
@@ -244,6 +296,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4F2B8F042A2BAD91000B1F6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FFC29082A2D508F003C20CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -277,6 +336,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FFC29062A2D508F003C20CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FFC290D2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift in Sources */,
+				4FFC29142A2D602B003C20CB /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -284,6 +352,11 @@
 			isa = PBXTargetDependency;
 			target = 4F2B8EFD2A2BAD91000B1F6D /* AleloStore */;
 			targetProxy = 4F2B8F082A2BAD91000B1F6D /* PBXContainerItemProxy */;
+		};
+		4FFC29102A2D508F003C20CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F2B8EFD2A2BAD91000B1F6D /* AleloStore */;
+			targetProxy = 4FFC290F2A2D508F003C20CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -504,6 +577,36 @@
 			};
 			name = Release;
 		};
+		4FFC29122A2D508F003C20CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TF59LXWJ93;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStoreAPIEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4FFC29132A2D508F003C20CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TF59LXWJ93;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.alelo.AleloStoreAPIEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -530,6 +633,15 @@
 			buildConfigurations = (
 				4F2B8F142A2BAD91000B1F6D /* Debug */,
 				4F2B8F152A2BAD91000B1F6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FFC29112A2D508F003C20CB /* Build configuration list for PBXNativeTarget "AleloStoreAPIEndToEndTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FFC29122A2D508F003C20CB /* Debug */,
+				4FFC29132A2D508F003C20CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
