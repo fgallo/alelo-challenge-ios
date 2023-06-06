@@ -58,9 +58,12 @@ final public class ProductsViewController: UITableViewController {
         cell.salePriceLabel.text = cellModel.salePrice
         cell.sizesLabel.text = cellModel.sizes.first?.size
         cell.saleContainer.isHidden = !cellModel.onSale
+        cell.productImageView.image = nil
         cell.imageContainer.isShimmering = true
         if let url = cellModel.imageURL {
             tasks[indexPath] = imageLoader?.loadImageData(from: url) { [weak cell] result in
+                let data = try? result.get()
+                cell?.productImageView.image = data.map(UIImage.init) ?? nil
                 cell?.imageContainer.isShimmering = false
             }
         }
