@@ -22,7 +22,7 @@ final class AleloStoreAPIEndToEndTests: XCTestCase {
     
     // MARK: - Helper
     
-    private func getProductsResult(file: StaticString = #filePath, line: UInt = #line) -> LoadProductsResult? {
+    private func getProductsResult(file: StaticString = #filePath, line: UInt = #line) -> ProductsLoader.Result? {
         let testServerURL = URL(string: "http://www.mocky.io/v2/59b6a65a0f0000e90471257d")!
         let client = URLSessionHTTPClient()
         let loader = RemoteProductsLoader(url: testServerURL, client: client)
@@ -31,7 +31,7 @@ final class AleloStoreAPIEndToEndTests: XCTestCase {
         
         let exp = expectation(description: "Wait for load completion")
         
-        var receivedResult: LoadProductsResult?
+        var receivedResult: ProductsLoader.Result?
         loader.load { result in
             receivedResult = result
             exp.fulfill()

@@ -4,11 +4,8 @@
 
 import Foundation
 
-public enum LoadProductsResult {
-    case success([Product])
-    case failure(Error)
-}
-
 public protocol ProductsLoader {
-    func load(completion: @escaping (LoadProductsResult) -> Void)
+    typealias Result = Swift.Result<[Product], Error>
+    
+    func load(completion: @escaping (Result) -> Void)
 }

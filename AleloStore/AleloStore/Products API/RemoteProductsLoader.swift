@@ -13,14 +13,12 @@ public final class RemoteProductsLoader: ProductsLoader {
         case invalidData
     }
     
-    public typealias Result = LoadProductsResult
-    
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void) {
+    public func load(completion: @escaping (ProductsLoader.Result) -> Void) {
         client.get(from: url) { [weak self] result in
             guard self != nil else { return }
             
