@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F2B8F072A2BAD91000B1F6D /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
+		4F69E5A12A2EAF4500D701A3 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69E5A02A2EAF4500D701A3 /* ProductCell.swift */; };
 		4F704CB92A2EA63C00E05741 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F704CB82A2EA63C00E05741 /* ProductsViewController.swift */; };
 		4F7F77012A2E970C0057F4FD /* ProductsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F77002A2E970C0057F4FD /* ProductsViewControllerTests.swift */; };
 		4F7F77032A2E99B20057F4FD /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; platformFilter = ios; };
@@ -77,6 +78,7 @@
 /* Begin PBXFileReference section */
 		4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AleloStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2B8F062A2BAD91000B1F6D /* AleloStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F69E5A02A2EAF4500D701A3 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		4F704CB82A2EA63C00E05741 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		4F7F77002A2E970C0057F4FD /* ProductsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewControllerTests.swift; sourceTree = "<group>"; };
 		4F8490F52A2E71AF0079A4D8 /* CI_iOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = CI_iOS.xctestplan; path = "Test Plans/CI_iOS.xctestplan"; sourceTree = SOURCE_ROOT; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				4F704CB82A2EA63C00E05741 /* ProductsViewController.swift */,
+				4F69E5A02A2EAF4500D701A3 /* ProductCell.swift */,
 			);
 			path = AleloStoreiOS;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F704CB92A2EA63C00E05741 /* ProductsViewController.swift in Sources */,
+				4F69E5A12A2EAF4500D701A3 /* ProductCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
