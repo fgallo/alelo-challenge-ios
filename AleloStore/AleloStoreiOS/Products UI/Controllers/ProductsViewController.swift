@@ -3,13 +3,11 @@
 //
 
 import UIKit
-import AleloStore
 
 final public class ProductsViewController: UITableViewController, UITableViewDataSourcePrefetching {
     private var viewModel: ProductsViewModel?
     private var imageLoader: ProductImageDataLoader?
-    private var tableModel = [Product]()
-    private var cellControllers = [IndexPath: ProductCellController]()
+    private var tableModel = [ProductCellController]()
     
     public convenience init(viewModel: ProductsViewModel, imageLoader: ProductImageDataLoader) {
         self.init()
@@ -39,7 +37,9 @@ final public class ProductsViewController: UITableViewController, UITableViewDat
             }
             
             if let products = viewModel.products {
-                self?.tableModel = products
+                self?.tableModel = products.map { model in
+                    ProductCellController(model: model, imageLoader: self!.imageLoader!)
+                }
                 self?.tableView.reloadData()
             }
         }
@@ -55,7 +55,7 @@ final public class ProductsViewController: UITableViewController, UITableViewDat
     }
     
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        removeCellController(forRowAt: indexPath)
+        cancelCellControllerLoad(forRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
@@ -65,18 +65,15 @@ final public class ProductsViewController: UITableViewController, UITableViewDat
     }
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach(removeCellController)
+        indexPaths.forEach(cancelCellControllerLoad)
     }
     
     private func cellController(forRowAt indexPath: IndexPath) -> ProductCellController {
-        let cellModel = tableModel[indexPath.row]
-        let cellController = ProductCellController(model: cellModel, imageLoader: imageLoader!)
-        cellControllers[indexPath] = cellController
-        return cellController
+        return tableModel[indexPath.row]
     }
     
-    private func removeCellController(forRowAt indexPath: IndexPath) {
-        cellControllers[indexPath] = nil
+    private func cancelCellControllerLoad(forRowAt indexPath: IndexPath) {
+        cellController(forRowAt: indexPath).cancelLoad()
     }
     
 }

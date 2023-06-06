@@ -49,7 +49,7 @@ final class ProductCellController {
         }
     }
     
-    deinit {
+    func cancelLoad() {
         task?.cancel()
     }
 }
