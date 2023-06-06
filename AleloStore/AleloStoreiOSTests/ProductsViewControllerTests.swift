@@ -75,7 +75,7 @@ final class ProductsViewControllerTests: XCTestCase {
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
-        assertThat(sut, isRendering: [])
+        assertThat(sut, isRendering: [ ])
         
         loader.completeProductsLoading(with: [product0], at: 0)
         XCTAssertEqual(sut.numberOfRenderedProductViews(), 1)
@@ -84,6 +84,27 @@ final class ProductsViewControllerTests: XCTestCase {
         sut.simulateUserInitiatedProductsReload()
         loader.completeProductsLoading(with: [product0, product1, product2], at: 1)
         assertThat(sut, isRendering: [product0, product1, product2])
+    }
+    
+    func test_loadProductsCompletion_doesNotAlterCurrentRenderStateOnError() {
+        let product0 = makeProduct(
+            name: "a name",
+            regularPrice: "a price",
+            salePrice: "a sale name",
+            onSale: true,
+            imageURL: nil,
+            size: "a size",
+            sku: "a sku",
+            available: true
+        )
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeProductsLoading(with: [product0], at: 0)
+        
+        sut.simulateUserInitiatedProductsReload()
+        loader.completeProductsLoadingWithError(at: 1)
+        assertThat(sut, isRendering: [product0])
     }
     
     // MARK: - Helpers
@@ -153,6 +174,11 @@ final class ProductsViewControllerTests: XCTestCase {
         
         func completeProductsLoading(with products: [Product] = [], at index: Int) {
             completions[index](.success(products))
+        }
+        
+        func completeProductsLoadingWithError(at index: Int = 0) {
+            let error = NSError(domain: "any error", code: 0)
+            completions[index](.failure(error))
         }
     }
     
