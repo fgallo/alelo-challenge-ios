@@ -10,7 +10,9 @@ public protocol ProductImageDataLoaderTask {
 }
 
 public protocol ProductImageDataLoader {
-    func loadImageData(from url: URL) -> ProductImageDataLoaderTask
+    typealias Result = Swift.Result<Data, Error>
+    
+    func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ProductImageDataLoaderTask
 }
 
 final public class ProductsViewController: UITableViewController {
@@ -56,8 +58,11 @@ final public class ProductsViewController: UITableViewController {
         cell.salePriceLabel.text = cellModel.salePrice
         cell.sizesLabel.text = cellModel.sizes.first?.size
         cell.saleContainer.isHidden = !cellModel.onSale
+        cell.imageContainer.isShimmering = true
         if let url = cellModel.imageURL {
-            tasks[indexPath] = imageLoader?.loadImageData(from: url)
+            tasks[indexPath] = imageLoader?.loadImageData(from: url) { [weak cell] result in
+                cell?.imageContainer.isShimmering = false
+            }
         }
         return cell
     }

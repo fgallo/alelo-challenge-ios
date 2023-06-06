@@ -10,4 +10,5 @@ public final class ProductCell: UITableViewCell {
     public let salePriceLabel = UILabel()
     public let sizesLabel = UILabel()
     public let saleContainer = UIView()
+    public let imageContainer = UIView()
 }
