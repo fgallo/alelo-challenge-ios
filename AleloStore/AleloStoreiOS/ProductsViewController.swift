@@ -25,14 +25,11 @@ final public class ProductsViewController: UITableViewController {
     @objc private func load() {
         refreshControl?.beginRefreshing()
         loader?.load { [weak self] result in
-            switch result {
-            case let .success(products):
+            if let products = try? result.get() {
                 self?.tableModel = products
                 self?.tableView.reloadData()
-                self?.refreshControl?.endRefreshing()
-                
-            case .failure: break
             }
+            self?.refreshControl?.endRefreshing()
         }
     }
     
