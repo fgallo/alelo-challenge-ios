@@ -15,7 +15,7 @@ public protocol ProductImageDataLoader {
     func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ProductImageDataLoaderTask
 }
 
-final public class ProductsViewController: UITableViewController {
+final public class ProductsViewController: UITableViewController, UITableViewDataSourcePrefetching {
     private var productsLoader: ProductsLoader?
     private var imageLoader: ProductImageDataLoader?
     private var tableModel = [Product]()
@@ -32,6 +32,7 @@ final public class ProductsViewController: UITableViewController {
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
+        tableView.prefetchDataSource = self
         load()
     }
     
@@ -63,7 +64,8 @@ final public class ProductsViewController: UITableViewController {
         if let url = cellModel.imageURL {
             tasks[indexPath] = imageLoader?.loadImageData(from: url) { [weak cell] result in
                 let data = try? result.get()
-                cell?.productImageView.image = data.map(UIImage.init) ?? nil
+                let image = data.map(UIImage.init) ?? nil
+                cell?.productImageView.image = image 
                 cell?.imageContainer.isShimmering = false
             }
         }
@@ -73,5 +75,14 @@ final public class ProductsViewController: UITableViewController {
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         tasks[indexPath]?.cancel()
         tasks[indexPath] = nil
+    }
+    
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { indexPath in
+            let cellModel = tableModel[indexPath.row]
+            if let url = cellModel.imageURL {
+                _ = imageLoader?.loadImageData(from: url) { _ in }
+            }
+        }
     }
 }

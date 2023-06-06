@@ -251,6 +251,40 @@ final class ProductsViewControllerTests: XCTestCase {
         XCTAssertEqual(view1?.renderedImage, imageData1, "Expected image for second view once second image loading completes successfully")
     }
     
+    func test_productView_preloadsImageURLWhenNearVisible() {
+        let product0 = makeProduct(
+            name: "a name",
+            regularPrice: "a price",
+            salePrice: "a sale name",
+            onSale: true,
+            imageURL: URL(string: "http://url-0.com"),
+            size: "a size",
+            sku: "a sku",
+            available: true
+        )
+        let product1 = makeProduct(
+            name: "another name",
+            regularPrice: "another price",
+            salePrice: "another sale name",
+            onSale: true,
+            imageURL: URL(string: "http://url-1.com"),
+            size: "another size",
+            sku: "another sku",
+            available: true
+        )
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeProductsLoading(with: [product0, product1])
+        XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views is near visible")
+        
+        sut.simulateProductViewNearVisible(at: 0)
+        XCTAssertEqual(loader.loadedImageURLs, [product0.imageURL], "Expected first image URL request once first image is near visible")
+        
+        sut.simulateProductViewNearVisible(at: 1)
+        XCTAssertEqual(loader.loadedImageURLs, [product0.imageURL, product1.imageURL], "Expected second image URL request once second image is near visible")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: ProductsViewController, loader: LoaderSpy) {
@@ -378,6 +412,12 @@ private extension ProductsViewController {
         let delegate = tableView.delegate
         let index = IndexPath(row: row, section: productsSection)
         delegate?.tableView?(tableView, didEndDisplaying: view!, forRowAt: index)
+    }
+    
+    func simulateProductViewNearVisible(at row: Int) {
+        let ds = tableView.prefetchDataSource
+        let index = IndexPath(row: row, section: productsSection)
+        ds?.tableView(tableView, prefetchRowsAt: [index])
     }
     
     var isShowingLoadingIndicator: Bool {
