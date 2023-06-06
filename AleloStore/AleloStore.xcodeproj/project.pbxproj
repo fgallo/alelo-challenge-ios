@@ -24,6 +24,12 @@
 		4F9F3D012A2BE5DF004134E5 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F3D002A2BE5DF004134E5 /* HTTPClient.swift */; };
 		4F9F3D032A2BE654004134E5 /* ProductsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F3D022A2BE654004134E5 /* ProductsMapper.swift */; };
 		4FC63D832A2ECDE10051807E /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC63D822A2ECDE10051807E /* UIView+Shimmering.swift */; };
+		4FC7A0742A2EDD2500F68ADC /* ProductImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A0732A2EDD2500F68ADC /* ProductImageDataLoader.swift */; };
+		4FC7A07A2A2EDE2000F68ADC /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A0792A2EDE2000F68ADC /* UIImage+TestHelpers.swift */; };
+		4FC7A07C2A2EDED400F68ADC /* ProductCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A07B2A2EDED400F68ADC /* ProductCell+TestHelpers.swift */; };
+		4FC7A07E2A2EDF2B00F68ADC /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A07D2A2EDF2B00F68ADC /* UIRefreshControl+TestHelpers.swift */; };
+		4FC7A0802A2EDF4F00F68ADC /* ProductsViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A07F2A2EDF4F00F68ADC /* ProductsViewController+TestHelpers.swift */; };
+		4FC7A0822A2EDFC800F68ADC /* ProductsViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A0812A2EDFC800F68ADC /* ProductsViewControllerTests+LoaderSpy.swift */; };
 		4FF4192F2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		4FFC290D2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */; };
 		4FFC290E2A2D508F003C20CB /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
@@ -93,6 +99,12 @@
 		4F9F3D002A2BE5DF004134E5 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		4F9F3D022A2BE654004134E5 /* ProductsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsMapper.swift; sourceTree = "<group>"; };
 		4FC63D822A2ECDE10051807E /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
+		4FC7A0732A2EDD2500F68ADC /* ProductImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageDataLoader.swift; sourceTree = "<group>"; };
+		4FC7A0792A2EDE2000F68ADC /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
+		4FC7A07B2A2EDED400F68ADC /* ProductCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductCell+TestHelpers.swift"; sourceTree = "<group>"; };
+		4FC7A07D2A2EDF2B00F68ADC /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
+		4FC7A07F2A2EDF4F00F68ADC /* ProductsViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductsViewController+TestHelpers.swift"; sourceTree = "<group>"; };
+		4FC7A0812A2EDFC800F68ADC /* ProductsViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductsViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
 		4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreAPIEndToEndTests.swift; sourceTree = "<group>"; };
@@ -228,6 +240,52 @@
 			path = "Products API";
 			sourceTree = "<group>";
 		};
+		4FC7A0722A2EDD0800F68ADC /* Product Image Loader */ = {
+			isa = PBXGroup;
+			children = (
+				4FC7A0732A2EDD2500F68ADC /* ProductImageDataLoader.swift */,
+			);
+			path = "Product Image Loader";
+			sourceTree = "<group>";
+		};
+		4FC7A0752A2EDD4900F68ADC /* Products UI */ = {
+			isa = PBXGroup;
+			children = (
+				4FC7A0762A2EDD5F00F68ADC /* Controllers */,
+				4FC7A0772A2EDD6A00F68ADC /* Views */,
+			);
+			path = "Products UI";
+			sourceTree = "<group>";
+		};
+		4FC7A0762A2EDD5F00F68ADC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4F704CB82A2EA63C00E05741 /* ProductsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4FC7A0772A2EDD6A00F68ADC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4F69E5A02A2EAF4500D701A3 /* ProductCell.swift */,
+				4FC63D822A2ECDE10051807E /* UIView+Shimmering.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4FC7A0782A2EDDF500F68ADC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4FC7A0792A2EDE2000F68ADC /* UIImage+TestHelpers.swift */,
+				4FC7A07B2A2EDED400F68ADC /* ProductCell+TestHelpers.swift */,
+				4FC7A07F2A2EDF4F00F68ADC /* ProductsViewController+TestHelpers.swift */,
+				4FC7A07D2A2EDF2B00F68ADC /* UIRefreshControl+TestHelpers.swift */,
+				4FC7A0812A2EDFC800F68ADC /* ProductsViewControllerTests+LoaderSpy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		4FF4192D2A2C2CA800E186A9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,9 +317,8 @@
 		4FFC29202A2E5244003C20CB /* AleloStoreiOS */ = {
 			isa = PBXGroup;
 			children = (
-				4F704CB82A2EA63C00E05741 /* ProductsViewController.swift */,
-				4F69E5A02A2EAF4500D701A3 /* ProductCell.swift */,
-				4FC63D822A2ECDE10051807E /* UIView+Shimmering.swift */,
+				4FC7A0722A2EDD0800F68ADC /* Product Image Loader */,
+				4FC7A0752A2EDD4900F68ADC /* Products UI */,
 			);
 			path = AleloStoreiOS;
 			sourceTree = "<group>";
@@ -269,6 +326,7 @@
 		4FFC292A2A2E5245003C20CB /* AleloStoreiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				4FC7A0782A2EDDF500F68ADC /* Helpers */,
 				4F7F77002A2E970C0057F4FD /* ProductsViewControllerTests.swift */,
 			);
 			path = AleloStoreiOSTests;
@@ -513,6 +571,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FC7A0742A2EDD2500F68ADC /* ProductImageDataLoader.swift in Sources */,
 				4FC63D832A2ECDE10051807E /* UIView+Shimmering.swift in Sources */,
 				4F704CB92A2EA63C00E05741 /* ProductsViewController.swift in Sources */,
 				4F69E5A12A2EAF4500D701A3 /* ProductCell.swift in Sources */,
@@ -523,8 +582,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FC7A0822A2EDFC800F68ADC /* ProductsViewControllerTests+LoaderSpy.swift in Sources */,
 				4F7F77012A2E970C0057F4FD /* ProductsViewControllerTests.swift in Sources */,
+				4FC7A07E2A2EDF2B00F68ADC /* UIRefreshControl+TestHelpers.swift in Sources */,
+				4FC7A0802A2EDF4F00F68ADC /* ProductsViewController+TestHelpers.swift in Sources */,
 				4F7F77082A2E9B410057F4FD /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				4FC7A07A2A2EDE2000F68ADC /* UIImage+TestHelpers.swift in Sources */,
+				4FC7A07C2A2EDED400F68ADC /* ProductCell+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

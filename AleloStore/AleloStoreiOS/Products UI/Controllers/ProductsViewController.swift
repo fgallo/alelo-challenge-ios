@@ -5,16 +5,6 @@
 import UIKit
 import AleloStore
 
-public protocol ProductImageDataLoaderTask {
-    func cancel()
-}
-
-public protocol ProductImageDataLoader {
-    typealias Result = Swift.Result<Data, Error>
-    
-    func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ProductImageDataLoaderTask
-}
-
 final public class ProductsViewController: UITableViewController, UITableViewDataSourcePrefetching {
     private var productsLoader: ProductsLoader?
     private var imageLoader: ProductImageDataLoader?
