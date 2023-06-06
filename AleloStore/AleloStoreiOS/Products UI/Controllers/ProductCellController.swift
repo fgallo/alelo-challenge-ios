@@ -15,8 +15,8 @@ final class ProductCellController {
         self.imageLoader = imageLoader
     }
     
-    func view() -> UITableViewCell {
-        let cell = ProductCell()
+    func view(in tableView: UITableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as! ProductCell
         cell.nameLabel.text = model.name
         cell.regularPriceLabel.text = model.regularPrice
         cell.salePriceLabel.text = model.salePrice

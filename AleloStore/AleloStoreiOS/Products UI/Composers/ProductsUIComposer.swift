@@ -2,7 +2,7 @@
 //  Created by Fernando Gallo on 06/06/23.
 //
 
-import Foundation
+import UIKit
 import AleloStore
 
 public final class ProductsUIComposer {
@@ -10,7 +10,25 @@ public final class ProductsUIComposer {
     
     public static func productsComposedWith(productsLoader: ProductsLoader, imageLoader: ProductImageDataLoader) -> ProductsViewController {
         let productsViewModel = ProductsViewModel(productsLoader: productsLoader)
-        let productsViewController = ProductsViewController(viewModel: productsViewModel, imageLoader: imageLoader)
+        let productsViewController = makeProductsViewController(title: "Products")
+        productsViewController.viewModel = productsViewModel
+        productsViewModel.onProductsLoad = adaptProductsToCellControllers(forwardingTo: productsViewController, loader: imageLoader)
         return productsViewController
+    }
+    
+    private static func makeProductsViewController(title: String) -> ProductsViewController {
+        let bundle = Bundle(for: ProductsViewController.self)
+        let storyboard = UIStoryboard(name: "Products", bundle: bundle)
+        let productsViewController = storyboard.instantiateInitialViewController() as! ProductsViewController
+        productsViewController.title = title
+        return productsViewController
+    }
+    
+    private static func adaptProductsToCellControllers(forwardingTo controller: ProductsViewController, loader: ProductImageDataLoader) -> ([Product]) -> Void {
+        return { [weak controller] products in
+            controller?.tableModel = products.map { model in
+                ProductCellController(model: model, imageLoader: loader)
+            }
+        }
     }
 }

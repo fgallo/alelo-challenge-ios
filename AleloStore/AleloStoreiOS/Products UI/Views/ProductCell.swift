@@ -5,11 +5,11 @@
 import UIKit
 
 public final class ProductCell: UITableViewCell {
-    public let nameLabel = UILabel()
-    public let regularPriceLabel = UILabel()
-    public let salePriceLabel = UILabel()
-    public let sizesLabel = UILabel()
-    public let saleContainer = UIView()
-    public let imageContainer = UIView()
-    public let productImageView = UIImageView()
+    @IBOutlet private(set) public var nameLabel: UILabel!
+    @IBOutlet private(set) public var regularPriceLabel: UILabel!
+    @IBOutlet private(set) public var salePriceLabel: UILabel!
+    @IBOutlet private(set) public var sizesLabel: UILabel!
+    @IBOutlet private(set) public var saleContainer: UIView!
+    @IBOutlet private(set) public var imageContainer: UIView!
+    @IBOutlet private(set) public var productImageView: UIImageView!
 }

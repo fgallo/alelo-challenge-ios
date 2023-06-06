@@ -5,53 +5,37 @@
 import UIKit
 
 final public class ProductsViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    private var viewModel: ProductsViewModel?
-    private var imageLoader: ProductImageDataLoader?
-    private var tableModel = [ProductCellController]()
-    
-    public convenience init(viewModel: ProductsViewModel, imageLoader: ProductImageDataLoader) {
-        self.init()
-        self.viewModel = viewModel
-        self.imageLoader = imageLoader
+    var viewModel: ProductsViewModel?
+    var tableModel = [ProductCellController]() {
+        didSet {
+            tableView.reloadData()
+        }
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshControl = UIRefreshControl()
         tableView.prefetchDataSource = self
         binding()
-        load()
+        refresh()
     }
     
-    @objc private func load() {
+    @IBAction func refresh() {
         viewModel?.loadProducts()
     }
     
     private func binding() {
-        viewModel?.onChange = { [weak self] viewModel in
-            if viewModel.isLoading {
-                self?.refreshControl?.beginRefreshing()
-            } else {
-                self?.refreshControl?.endRefreshing()
-            }
-            
-            if let products = viewModel.products {
-                self?.tableModel = products.map { model in
-                    ProductCellController(model: model, imageLoader: self!.imageLoader!)
-                }
-                self?.tableView.reloadData()
-            }
+        viewModel?.onLoadingStateChange = { [weak self] isLoading in
+            isLoading ? self?.refreshControl?.beginRefreshing() : self?.refreshControl?.endRefreshing()
         }
-        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
     }
-    
+     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableModel.count
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellController(forRowAt: indexPath).view()
+        return cellController(forRowAt: indexPath).view(in: tableView)
     }
     
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {

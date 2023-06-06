@@ -10,6 +10,7 @@
 		4F18DE372A2F6D4D008E369B /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18DE362A2F6D4D008E369B /* ProductsViewModel.swift */; };
 		4F18DE3A2A2F7226008E369B /* ProductsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18DE392A2F7226008E369B /* ProductsUIComposer.swift */; };
 		4F18DE3C2A2F79BD008E369B /* ProductCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18DE3B2A2F79BD008E369B /* ProductCellController.swift */; };
+		4F18DE402A2F830E008E369B /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F18DE3F2A2F830E008E369B /* Products.storyboard */; };
 		4F2B8F072A2BAD91000B1F6D /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
 		4F69E5A12A2EAF4500D701A3 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69E5A02A2EAF4500D701A3 /* ProductCell.swift */; };
 		4F704CB92A2EA63C00E05741 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F704CB82A2EA63C00E05741 /* ProductsViewController.swift */; };
@@ -89,6 +90,7 @@
 		4F18DE362A2F6D4D008E369B /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		4F18DE392A2F7226008E369B /* ProductsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsUIComposer.swift; sourceTree = "<group>"; };
 		4F18DE3B2A2F79BD008E369B /* ProductCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellController.swift; sourceTree = "<group>"; };
+		4F18DE3F2A2F830E008E369B /* Products.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Products.storyboard; sourceTree = "<group>"; };
 		4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AleloStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2B8F062A2BAD91000B1F6D /* AleloStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F69E5A02A2EAF4500D701A3 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 			children = (
 				4F69E5A02A2EAF4500D701A3 /* ProductCell.swift */,
 				4FC63D822A2ECDE10051807E /* UIView+Shimmering.swift */,
+				4F18DE3F2A2F830E008E369B /* Products.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F18DE402A2F830E008E369B /* Products.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
