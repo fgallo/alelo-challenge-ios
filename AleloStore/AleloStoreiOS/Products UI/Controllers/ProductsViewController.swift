@@ -6,14 +6,14 @@ import UIKit
 import AleloStore
 
 final public class ProductsViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    private var productsLoader: ProductsLoader?
+    private var viewModel: ProductsViewModel?
     private var imageLoader: ProductImageDataLoader?
     private var tableModel = [Product]()
     private var tasks = [IndexPath: ProductImageDataLoaderTask]()
     
-    public convenience init(productsLoader: ProductsLoader, imageLoader: ProductImageDataLoader) {
+    public convenience init(viewModel: ProductsViewModel, imageLoader: ProductImageDataLoader) {
         self.init()
-        self.productsLoader = productsLoader
+        self.viewModel = viewModel
         self.imageLoader = imageLoader
     }
     
@@ -21,20 +21,29 @@ final public class ProductsViewController: UITableViewController, UITableViewDat
         super.viewDidLoad()
         
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
         tableView.prefetchDataSource = self
+        binding()
         load()
     }
     
     @objc private func load() {
-        refreshControl?.beginRefreshing()
-        productsLoader?.load { [weak self] result in
-            if let products = try? result.get() {
+        viewModel?.loadProducts()
+    }
+    
+    private func binding() {
+        viewModel?.onChange = { [weak self] viewModel in
+            if viewModel.isLoading {
+                self?.refreshControl?.beginRefreshing()
+            } else {
+                self?.refreshControl?.endRefreshing()
+            }
+            
+            if let products = viewModel.products {
                 self?.tableModel = products
                 self?.tableView.reloadData()
             }
-            self?.refreshControl?.endRefreshing()
         }
+        refreshControl?.addTarget(self, action: #selector(load), for: .valueChanged)
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
