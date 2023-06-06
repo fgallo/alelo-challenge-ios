@@ -5,13 +5,19 @@
 import UIKit
 import AleloStore
 
+public protocol ProductImageDataLoader {
+    func loadImageData(from url: URL)
+}
+
 final public class ProductsViewController: UITableViewController {
-    private var loader: ProductsLoader?
+    private var productsLoader: ProductsLoader?
+    private var imageLoader: ProductImageDataLoader?
     private var tableModel = [Product]()
     
-    public convenience init(loader: ProductsLoader) {
+    public convenience init(productsLoader: ProductsLoader, imageLoader: ProductImageDataLoader) {
         self.init()
-        self.loader = loader
+        self.productsLoader = productsLoader
+        self.imageLoader = imageLoader
     }
     
     public override func viewDidLoad() {
@@ -24,7 +30,7 @@ final public class ProductsViewController: UITableViewController {
     
     @objc private func load() {
         refreshControl?.beginRefreshing()
-        loader?.load { [weak self] result in
+        productsLoader?.load { [weak self] result in
             if let products = try? result.get() {
                 self?.tableModel = products
                 self?.tableView.reloadData()
@@ -45,6 +51,9 @@ final public class ProductsViewController: UITableViewController {
         cell.salePriceLabel.text = cellModel.salePrice
         cell.sizesLabel.text = cellModel.sizes.first?.size
         cell.saleContainer.isHidden = !cellModel.onSale
+        if let url = cellModel.imageURL {
+            imageLoader?.loadImageData(from: url)
+        }
         return cell
     }
 }
