@@ -6,9 +6,9 @@ import Foundation
 import AleloStore
 
 final public class ProductsViewModel {
-    private let productsLoader: ProductsLoader?
+    private let productsLoader: ProductsLoader
     
-    init(productsLoader: ProductsLoader?) {
+    init(productsLoader: ProductsLoader) {
         self.productsLoader = productsLoader
     }
     
@@ -17,7 +17,7 @@ final public class ProductsViewModel {
     
     func loadProducts() {
         onLoadingStateChange?(true)
-        productsLoader?.load { [weak self] result in
+        productsLoader.load { [weak self] result in
             if let products = try? result.get() {
                 self?.onProductsLoad?(products)
             }
