@@ -3,17 +3,18 @@
 //
 
 import Foundation
-import UIKit
 import AleloStore
 
-final class ProductCellViewModel {
+final class ProductCellViewModel<Image> {
     private var task: ProductImageDataLoaderTask?
     private let model: Product
     private let imageLoader: ProductImageDataLoader
+    private let imageTransformer: (Data) -> Image?
     
-    init(model: Product, imageLoader: ProductImageDataLoader) {
+    init(model: Product, imageLoader: ProductImageDataLoader, imageTransformer: @escaping (Data) -> Image?) {
         self.model = model
         self.imageLoader = imageLoader
+        self.imageTransformer = imageTransformer
     }
     
     var name: String? {
@@ -44,7 +45,7 @@ final class ProductCellViewModel {
         return model.onSale
     }
     
-    var onImageLoad: ((UIImage) -> Void)?
+    var onImageLoad: ((Image) -> Void)?
     var onImageLoadStateChange: ((Bool) -> Void)?
     
     func loadImageData() {
@@ -57,7 +58,7 @@ final class ProductCellViewModel {
     }
     
     private func handle(_ result: ProductImageDataLoader.Result) {
-        if let image = (try? result.get()).flatMap(UIImage.init) {
+        if let image = (try? result.get()).flatMap(imageTransformer) {
             onImageLoad?(image)
         }
         onImageLoadStateChange?(false)
