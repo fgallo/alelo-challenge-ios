@@ -5,15 +5,19 @@
 import UIKit
 import AleloStore
 
+public protocol ProductImageDataLoaderTask {
+    func cancel()
+}
+
 public protocol ProductImageDataLoader {
-    func loadImageData(from url: URL)
-    func cancelImageDataLoad(from url: URL)
+    func loadImageData(from url: URL) -> ProductImageDataLoaderTask
 }
 
 final public class ProductsViewController: UITableViewController {
     private var productsLoader: ProductsLoader?
     private var imageLoader: ProductImageDataLoader?
     private var tableModel = [Product]()
+    private var tasks = [IndexPath: ProductImageDataLoaderTask]()
     
     public convenience init(productsLoader: ProductsLoader, imageLoader: ProductImageDataLoader) {
         self.init()
@@ -53,15 +57,13 @@ final public class ProductsViewController: UITableViewController {
         cell.sizesLabel.text = cellModel.sizes.first?.size
         cell.saleContainer.isHidden = !cellModel.onSale
         if let url = cellModel.imageURL {
-            imageLoader?.loadImageData(from: url)
+            tasks[indexPath] = imageLoader?.loadImageData(from: url)
         }
         return cell
     }
     
     public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let cellModel = tableModel[indexPath.row]
-        if let url = cellModel.imageURL {
-            imageLoader?.cancelImageDataLoad(from: url)
-        }
+        tasks[indexPath]?.cancel()
+        tasks[indexPath] = nil
     }
 }
