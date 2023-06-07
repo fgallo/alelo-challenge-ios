@@ -23,42 +23,9 @@ class LocalCartLoader {
     }
 }
 
-class CartStore {
-    enum ReceivedMessage: Equatable {
-        case insert([CartItem])
-        case delete
-        case retrieve
-    }
-    
-    private(set) var receivedMessages = [ReceivedMessage]()
-    private(set) var deletionCompletions = [(Error?) -> Void]()
-    private(set) var insertionCompletions = [(Error?) -> Void]()
-    
-    func deleteCachedCart(completion: @escaping (Error?) -> Void) {
-        receivedMessages.append(.delete)
-        deletionCompletions.append(completion)
-    }
-    
-    func completeDeletion(with error: Error, at index: Int = 0) {
-        deletionCompletions[index](error)
-    }
-    
-    func completeDeletionSuccessfully(at index: Int = 0) {
-        deletionCompletions[index](nil)
-    }
-    
-    func insert(_ cart: [CartItem], completion: @escaping (Error?) -> Void) {
-        receivedMessages.append(.insert(cart))
-        insertionCompletions.append(completion)
-    }
-    
-    func completeInsertion(with error: Error, at index: Int = 0) {
-        insertionCompletions[index](error)
-    }
-    
-    func completeInsertionSuccessfully(at index: Int = 0) {
-        insertionCompletions[index](nil)
-    }
+protocol CartStore {
+    func deleteCachedCart(completion: @escaping (Error?) -> Void)
+    func insert(_ cart: [CartItem], completion: @escaping (Error?) -> Void)
 }
 
 class LocalCartLoaderTests: XCTestCase {
@@ -129,8 +96,46 @@ class LocalCartLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LocalCartLoader, store: CartStore) {
-        let store = CartStore()
+    private class CartStoreSpy: CartStore {
+        enum ReceivedMessage: Equatable {
+            case insert([CartItem])
+            case delete
+            case retrieve
+        }
+        
+        private(set) var receivedMessages = [ReceivedMessage]()
+        private(set) var deletionCompletions = [(Error?) -> Void]()
+        private(set) var insertionCompletions = [(Error?) -> Void]()
+        
+        func deleteCachedCart(completion: @escaping (Error?) -> Void) {
+            receivedMessages.append(.delete)
+            deletionCompletions.append(completion)
+        }
+        
+        func completeDeletion(with error: Error, at index: Int = 0) {
+            deletionCompletions[index](error)
+        }
+        
+        func completeDeletionSuccessfully(at index: Int = 0) {
+            deletionCompletions[index](nil)
+        }
+        
+        func insert(_ cart: [CartItem], completion: @escaping (Error?) -> Void) {
+            receivedMessages.append(.insert(cart))
+            insertionCompletions.append(completion)
+        }
+        
+        func completeInsertion(with error: Error, at index: Int = 0) {
+            insertionCompletions[index](error)
+        }
+        
+        func completeInsertionSuccessfully(at index: Int = 0) {
+            insertionCompletions[index](nil)
+        }
+    }
+    
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LocalCartLoader, store: CartStoreSpy) {
+        let store = CartStoreSpy()
         let sut = LocalCartLoader(store: store)
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(store, file: file, line: line)
