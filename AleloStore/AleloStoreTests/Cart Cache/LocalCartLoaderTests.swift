@@ -123,6 +123,15 @@ class LocalCartLoaderTests: XCTestCase {
         })
     }
     
+    func test_load_deliversCartOnNonEmptyCache() {
+        let (sut, store) = makeSUT()
+        let cart = makeCart()
+        
+        expect(sut, toCompleteWith: .success(cart.models), when: {
+            store.completeRetrieval(with: cart.local)
+        })
+    }
+    
     // MARK: - Helpers
     
     private class CartStoreSpy: CartStore {
@@ -135,7 +144,7 @@ class LocalCartLoaderTests: XCTestCase {
         private(set) var receivedMessages = [ReceivedMessage]()
         private(set) var deletionCompletions = [(Error?) -> Void]()
         private(set) var insertionCompletions = [(Error?) -> Void]()
-        private(set) var retrievalCompletions = [(Error?) -> Void]()
+        private(set) var retrievalCompletions = [(RetrieveCachedCartResult) -> Void]()
         
         func deleteCachedCart(completion: @escaping (Error?) -> Void) {
             receivedMessages.append(.delete)
@@ -163,17 +172,21 @@ class LocalCartLoaderTests: XCTestCase {
             insertionCompletions[index](nil)
         }
         
-        func retrieve(completion: @escaping (Error?) -> Void) {
+        func retrieve(completion: @escaping (RetrieveCachedCartResult) -> Void) {
             receivedMessages.append(.retrieve)
             retrievalCompletions.append(completion)
         }
         
         func completeRetrieval(with error: Error, at index: Int = 0) {
-            retrievalCompletions[index](error)
+            retrievalCompletions[index](.failure(error))
         }
         
         func completeRetrievalWithEmptyCache(index: Int = 0) {
-            retrievalCompletions[index](nil)
+            retrievalCompletions[index](.empty)
+        }
+        
+        func completeRetrieval(with cart: [LocalCartItem], at index: Int = 0) {
+            retrievalCompletions[index](.found(cart))
         }
     }
     
