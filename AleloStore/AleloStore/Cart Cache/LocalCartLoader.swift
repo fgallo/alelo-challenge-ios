@@ -23,8 +23,14 @@ public final class LocalCartLoader: CartCache {
         }
     }
 
-    public func load(completion: @escaping (Error?) -> Void) {
-        store.retrieve(completion: completion)
+    public func load(completion: @escaping (CartCache.LoadResult) -> Void) {
+        store.retrieve { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success([]))
+            }
+        }
     }
     
     private func cache(_ cart: [CartItem], with completion: @escaping (CartCache.SaveResult) -> Void) {

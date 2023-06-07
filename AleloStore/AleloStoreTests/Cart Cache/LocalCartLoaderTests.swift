@@ -112,8 +112,13 @@ class LocalCartLoaderTests: XCTestCase {
         let exp = expectation(description: "Wait for completion")
         
         var receivedError: Error?
-        sut.load { error in
-            receivedError = error
+        sut.load { result in
+            switch result {
+            case let .failure(error):
+                receivedError = error
+            default:
+                XCTFail("Expected failure, got \(result) instead")
+            }
             exp.fulfill()
         }
         
@@ -121,6 +126,27 @@ class LocalCartLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
         
         XCTAssertEqual(receivedError as? NSError, retrievalError)
+    }
+    
+    func test_load_deliversNoCartOnEmptyCache() {
+        let (sut, store) = makeSUT()
+        let exp = expectation(description: "Wait for completion")
+
+        var receivedCart: [CartItem]?
+        sut.load { result in
+            switch result {
+            case let .success(cart):
+                receivedCart = cart
+            default:
+                XCTFail("Expected success, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+
+        store.completeRetrievalWithEmptyCache()
+        wait(for: [exp], timeout: 1.0)
+
+        XCTAssertEqual(receivedCart, [])
     }
     
     // MARK: - Helpers
@@ -170,6 +196,10 @@ class LocalCartLoaderTests: XCTestCase {
         
         func completeRetrieval(with error: Error, at index: Int = 0) {
             retrievalCompletions[index](error)
+        }
+        
+        func completeRetrievalWithEmptyCache(index: Int = 0) {
+            retrievalCompletions[index](nil)
         }
     }
     
