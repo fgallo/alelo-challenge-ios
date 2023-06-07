@@ -40,6 +40,9 @@
 		4FC7A0822A2EDFC800F68ADC /* ProductsViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A0812A2EDFC800F68ADC /* ProductsViewControllerTests+LoaderSpy.swift */; };
 		4FCE36FE2A30DCED005C7FDC /* LocalCartLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE36FD2A30DCED005C7FDC /* LocalCartLoader.swift */; };
 		4FCE37002A30DD81005C7FDC /* CartStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE36FF2A30DD81005C7FDC /* CartStore.swift */; };
+		4FCE37022A310D14005C7FDC /* LocalCartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE37012A310D14005C7FDC /* LocalCartItem.swift */; };
+		4FCE37042A310D24005C7FDC /* LocalProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE37032A310D24005C7FDC /* LocalProduct.swift */; };
+		4FCE37062A310D2A005C7FDC /* LocalProductSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE37052A310D2A005C7FDC /* LocalProductSize.swift */; };
 		4FF4192F2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		4FFC290D2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */; };
 		4FFC290E2A2D508F003C20CB /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
@@ -125,6 +128,9 @@
 		4FC7A0812A2EDFC800F68ADC /* ProductsViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductsViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
 		4FCE36FD2A30DCED005C7FDC /* LocalCartLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCartLoader.swift; sourceTree = "<group>"; };
 		4FCE36FF2A30DD81005C7FDC /* CartStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartStore.swift; sourceTree = "<group>"; };
+		4FCE37012A310D14005C7FDC /* LocalCartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCartItem.swift; sourceTree = "<group>"; };
+		4FCE37032A310D24005C7FDC /* LocalProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalProduct.swift; sourceTree = "<group>"; };
+		4FCE37052A310D2A005C7FDC /* LocalProductSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalProductSize.swift; sourceTree = "<group>"; };
 		4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreAPIEndToEndTests.swift; sourceTree = "<group>"; };
@@ -210,6 +216,9 @@
 			children = (
 				4FCE36FD2A30DCED005C7FDC /* LocalCartLoader.swift */,
 				4FCE36FF2A30DD81005C7FDC /* CartStore.swift */,
+				4FCE37012A310D14005C7FDC /* LocalCartItem.swift */,
+				4FCE37032A310D24005C7FDC /* LocalProduct.swift */,
+				4FCE37052A310D2A005C7FDC /* LocalProductSize.swift */,
 			);
 			path = "Cart Cache";
 			sourceTree = "<group>";
@@ -615,10 +624,13 @@
 				4F242CE22A302AC90093EB4A /* CartCache.swift in Sources */,
 				4F9F3D012A2BE5DF004134E5 /* HTTPClient.swift in Sources */,
 				4F93FF2F2A2BB31C008F0BF0 /* ProductSize.swift in Sources */,
+				4FCE37042A310D24005C7FDC /* LocalProduct.swift in Sources */,
 				4FCE37002A30DD81005C7FDC /* CartStore.swift in Sources */,
 				4FCE36FE2A30DCED005C7FDC /* LocalCartLoader.swift in Sources */,
 				4F93FF2D2A2BB262008F0BF0 /* Product.swift in Sources */,
 				4F9F3D032A2BE654004134E5 /* ProductsMapper.swift in Sources */,
+				4FCE37022A310D14005C7FDC /* LocalCartItem.swift in Sources */,
+				4FCE37062A310D2A005C7FDC /* LocalProductSize.swift in Sources */,
 				4F93FF3B2A2BB691008F0BF0 /* ProductsLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
