@@ -101,9 +101,26 @@ class LocalCartLoaderTests: XCTestCase {
     func test_load_requestsCacheRetrieval() {
         let (sut, store) = makeSUT()
         
-        sut.load()
+        sut.load() { _ in }
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
+    
+    func test_load_failsOnRetrievalError() {
+        let (sut, store) = makeSUT()
+        let retrievalError = anyNSError()
+        let exp = expectation(description: "Wait for completion")
+        
+        var receivedError: Error?
+        sut.load { error in
+            receivedError = error
+            exp.fulfill()
+        }
+        
+        store.completeRetrieval(with: retrievalError)
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError as? NSError, retrievalError)
     }
     
     // MARK: - Helpers
@@ -118,6 +135,7 @@ class LocalCartLoaderTests: XCTestCase {
         private(set) var receivedMessages = [ReceivedMessage]()
         private(set) var deletionCompletions = [(Error?) -> Void]()
         private(set) var insertionCompletions = [(Error?) -> Void]()
+        private(set) var retrievalCompletions = [(Error?) -> Void]()
         
         func deleteCachedCart(completion: @escaping (Error?) -> Void) {
             receivedMessages.append(.delete)
@@ -145,8 +163,13 @@ class LocalCartLoaderTests: XCTestCase {
             insertionCompletions[index](nil)
         }
         
-        func retrieve() {
+        func retrieve(completion: @escaping (Error?) -> Void) {
             receivedMessages.append(.retrieve)
+            retrievalCompletions.append(completion)
+        }
+        
+        func completeRetrieval(with error: Error, at index: Int = 0) {
+            retrievalCompletions[index](error)
         }
     }
     
