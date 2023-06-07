@@ -13,7 +13,9 @@ class LocalCartLoader {
     }
     
     func save(_ cart: [CartItem], completion: @escaping (Error?) -> Void) {
-        store.deleteCachedCart { [unowned self] error in
+        store.deleteCachedCart { [weak self] error in
+            guard let self = self else { return }
+            
             if let error = error {
                 completion(error)
             } else {
@@ -92,6 +94,19 @@ class LocalCartLoaderTests: XCTestCase {
             store.completeDeletionSuccessfully()
             store.completeInsertionSuccessfully()
         })
+    }
+    
+    func test_save_doesNotDeliverDeletionErrorAfterSUTInstanceHasBeenDeallocated() {
+        let store = CartStoreSpy()
+        var sut: LocalCartLoader? = LocalCartLoader(store: store)
+        
+        var receivedResults = [Error?]()
+        sut?.save([makeCartItem()]) { receivedResults.append($0) }
+        
+        sut = nil
+        store.completeDeletion(with: anyNSError())
+        
+        XCTAssertTrue(receivedResults.isEmpty)
     }
     
     // MARK: - Helpers
