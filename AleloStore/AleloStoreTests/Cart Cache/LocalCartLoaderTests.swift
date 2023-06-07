@@ -15,7 +15,7 @@ class LocalCartLoaderTests: XCTestCase {
     
     func test_save_requestCacheDeletion() {
         let (sut, store) = makeSUT()
-        let cart = [makeCartItem(), makeCartItem()]
+        let cart = makeCart().models
         
         sut.save(cart) { _ in }
         
@@ -24,7 +24,7 @@ class LocalCartLoaderTests: XCTestCase {
     
     func test_save_doesNotRequestCacheInsertionOnDeletionError() {
         let (sut, store) = makeSUT()
-        let cart = [makeCartItem(), makeCartItem()]
+        let cart = makeCart().models
         let deletionError = anyNSError()
         
         sut.save(cart) { _ in }
@@ -35,12 +35,12 @@ class LocalCartLoaderTests: XCTestCase {
     
     func test_save_requestsNewCacheInsertionOnSuccessfulDeletion() {
         let (sut, store) = makeSUT()
-        let cart = [makeCartItem(), makeCartItem()]
+        let cart = makeCart()
         
-        sut.save(cart) { _ in }
+        sut.save(cart.models) { _ in }
         store.completeDeletionSuccessfully()
         
-        XCTAssertEqual(store.receivedMessages, [.delete, .insert(cart)])
+        XCTAssertEqual(store.receivedMessages, [.delete, .insert(cart.local)])
     }
     
     func test_save_failsOnDeletionError() {
@@ -76,7 +76,7 @@ class LocalCartLoaderTests: XCTestCase {
         var sut: LocalCartLoader? = LocalCartLoader(store: store)
         
         var receivedResults = [LocalCartLoader.SaveResult]()
-        sut?.save([makeCartItem()]) { receivedResults.append($0) }
+        sut?.save(makeCart().models) { receivedResults.append($0) }
         
         sut = nil
         store.completeDeletion(with: anyNSError())
@@ -89,7 +89,7 @@ class LocalCartLoaderTests: XCTestCase {
         var sut: LocalCartLoader? = LocalCartLoader(store: store)
         
         var receivedResults = [LocalCartLoader.SaveResult]()
-        sut?.save([makeCartItem()]) { receivedResults.append($0) }
+        sut?.save(makeCart().models) { receivedResults.append($0) }
         
         store.completeDeletionSuccessfully()
         sut = nil
@@ -102,7 +102,7 @@ class LocalCartLoaderTests: XCTestCase {
     
     private class CartStoreSpy: CartStore {
         enum ReceivedMessage: Equatable {
-            case insert([CartItem])
+            case insert([LocalCartItem])
             case delete
             case retrieve
         }
@@ -124,7 +124,7 @@ class LocalCartLoaderTests: XCTestCase {
             deletionCompletions[index](nil)
         }
         
-        func insert(_ cart: [CartItem], completion: @escaping (Error?) -> Void) {
+        func insert(_ cart: [LocalCartItem], completion: @escaping (Error?) -> Void) {
             receivedMessages.append(.insert(cart))
             insertionCompletions.append(completion)
         }
@@ -151,7 +151,7 @@ class LocalCartLoaderTests: XCTestCase {
         let exp = expectation(description: "Wait for completion")
         
         var receivedError: Error?
-        sut.save([makeCartItem()]) { error in
+        sut.save(makeCart().models) { error in
             receivedError = error
             exp.fulfill()
         }
@@ -168,6 +168,24 @@ class LocalCartLoaderTests: XCTestCase {
                               salePrice: "a sale price", onSale: true,
                               imageURL: anyURL(), sizes: [size])
         return CartItem(product: product, quantity: 1)
+    }
+    
+    private func makeCart() -> (models: [CartItem], local: [LocalCartItem]) {
+        let models = [makeCartItem(), makeCartItem()]
+        let local = models.map { cartItem in
+            let localSizes = cartItem.product.sizes.map { LocalProductSize(size: $0.size, sku: $0.sku, available: $0.available) }
+            let localProduct = LocalProduct(
+                name: cartItem.product.name,
+                regularPrice: cartItem.product.regularPrice,
+                salePrice: cartItem.product.salePrice,
+                onSale: cartItem.product.onSale,
+                imageURL: cartItem.product.imageURL,
+                sizes: localSizes
+            )
+            return LocalCartItem(product: localProduct, quantity: cartItem.quantity)
+        }
+        
+        return (models, local)
     }
     
     private func anyNSError() -> NSError {

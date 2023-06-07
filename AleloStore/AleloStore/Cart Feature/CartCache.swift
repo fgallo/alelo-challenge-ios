@@ -5,5 +5,7 @@
 import Foundation
 
 public protocol CartCache {
-    func save(_ cartItem: CartItem)
+    typealias SaveResult = Error?
+    
+    func save(_ cart: [CartItem], completion: @escaping (SaveResult) -> Void)
 }
