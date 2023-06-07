@@ -16,14 +16,19 @@ class LocalCartLoader {
         store.deleteCachedCart { [weak self] error in
             guard let self = self else { return }
             
-            if let error = error {
-                completion(error)
+            if let cacheDeletionError = error {
+                completion(cacheDeletionError)
             } else {
-                self.store.insert(cart) { [weak self] error in
-                    guard self != nil else { return }
-                    completion(error)
-                }
+                self.cache(cart, with: completion)
             }
+        }
+    }
+    
+    private func cache(_ cart: [CartItem], with completion: @escaping (Error?) -> Void) {
+        store.insert(cart) { [weak self] error in
+            guard self != nil else { return }
+            
+            completion(error)
         }
     }
 }
