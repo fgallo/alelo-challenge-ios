@@ -109,44 +109,18 @@ class LocalCartLoaderTests: XCTestCase {
     func test_load_failsOnRetrievalError() {
         let (sut, store) = makeSUT()
         let retrievalError = anyNSError()
-        let exp = expectation(description: "Wait for completion")
         
-        var receivedError: Error?
-        sut.load { result in
-            switch result {
-            case let .failure(error):
-                receivedError = error
-            default:
-                XCTFail("Expected failure, got \(result) instead")
-            }
-            exp.fulfill()
-        }
-        
-        store.completeRetrieval(with: retrievalError)
-        wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertEqual(receivedError as? NSError, retrievalError)
+        expect(sut, toCompleteWith: .failure(retrievalError), when: {
+            store.completeRetrieval(with: retrievalError)
+        })
     }
     
     func test_load_deliversNoCartOnEmptyCache() {
         let (sut, store) = makeSUT()
-        let exp = expectation(description: "Wait for completion")
-
-        var receivedCart: [CartItem]?
-        sut.load { result in
-            switch result {
-            case let .success(cart):
-                receivedCart = cart
-            default:
-                XCTFail("Expected success, got \(result) instead")
-            }
-            exp.fulfill()
-        }
-
-        store.completeRetrievalWithEmptyCache()
-        wait(for: [exp], timeout: 1.0)
-
-        XCTAssertEqual(receivedCart, [])
+        
+        expect(sut, toCompleteWith: .success([]), when: {
+            store.completeRetrievalWithEmptyCache()
+        })
     }
     
     // MARK: - Helpers
@@ -225,6 +199,28 @@ class LocalCartLoaderTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
         
         XCTAssertEqual(receivedError as? NSError, expectedError, file: file, line: line)
+    }
+    
+    private func expect(_ sut: LocalCartLoader, toCompleteWith expectedResult: CartCache.LoadResult, when action: () -> Void,
+                        file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for completion")
+
+        sut.load { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case let (.success(receivedCart), .success(expectedCart)):
+                XCTAssertEqual(receivedCart, expectedCart, file: file, line: line)
+                
+            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+                
+            default:
+                XCTFail("Expected result \(expectedResult), got \(receivedResult) instead", file: file, line: line)
+            }
+            exp.fulfill()
+        }
+
+        action()
+        wait(for: [exp], timeout: 1.0)
     }
     
     private func makeCartItem() -> CartItem {
