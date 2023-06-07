@@ -24,7 +24,9 @@ public final class LocalCartLoader: CartCache {
     }
 
     public func load(completion: @escaping (CartCache.LoadResult) -> Void) {
-        store.retrieve { result in
+        store.retrieve { [weak self] result in
+            guard let _ = self else { return }
+            
             switch result {
             case .empty:
                 completion(.success([]))

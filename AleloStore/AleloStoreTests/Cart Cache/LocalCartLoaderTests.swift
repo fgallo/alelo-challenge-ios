@@ -132,6 +132,19 @@ class LocalCartLoaderTests: XCTestCase {
         })
     }
     
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let store = CartStoreSpy()
+        var sut: LocalCartLoader? = LocalCartLoader(store: store)
+        
+        var receivedResults = [CartCache.LoadResult]()
+        sut?.load { receivedResults.append($0) }
+        
+        sut = nil
+        store.completeRetrievalWithEmptyCache()
+        
+        XCTAssertTrue(receivedResults.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private class CartStoreSpy: CartStore {
