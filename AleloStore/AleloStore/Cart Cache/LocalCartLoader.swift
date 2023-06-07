@@ -22,6 +22,10 @@ public final class LocalCartLoader: CartCache {
             }
         }
     }
+
+    public func load() {
+        store.retrieve()
+    }
     
     private func cache(_ cart: [CartItem], with completion: @escaping (CartCache.SaveResult) -> Void) {
         store.insert(cart.toLocal()) { [weak self] error in

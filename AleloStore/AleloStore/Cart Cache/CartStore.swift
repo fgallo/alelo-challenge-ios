@@ -7,4 +7,5 @@ import Foundation
 public protocol CartStore {
     func deleteCachedCart(completion: @escaping (Error?) -> Void)
     func insert(_ cart: [LocalCartItem], completion: @escaping (Error?) -> Void)
+    func retrieve()
 }

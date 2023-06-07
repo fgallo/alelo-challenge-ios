@@ -98,6 +98,14 @@ class LocalCartLoaderTests: XCTestCase {
         XCTAssertTrue(receivedResults.isEmpty)
     }
     
+    func test_load_requestsCacheRetrieval() {
+        let (sut, store) = makeSUT()
+        
+        sut.load()
+        
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
+    
     // MARK: - Helpers
     
     private class CartStoreSpy: CartStore {
@@ -135,6 +143,10 @@ class LocalCartLoaderTests: XCTestCase {
         
         func completeInsertionSuccessfully(at index: Int = 0) {
             insertionCompletions[index](nil)
+        }
+        
+        func retrieve() {
+            receivedMessages.append(.retrieve)
         }
     }
     
