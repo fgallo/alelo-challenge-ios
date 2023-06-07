@@ -19,7 +19,10 @@ class LocalCartLoader {
             if let error = error {
                 completion(error)
             } else {
-                self.store.insert(cart, completion: completion)
+                self.store.insert(cart) { [weak self] error in
+                    guard self != nil else { return }
+                    completion(error)
+                }
             }
         }
     }
@@ -105,6 +108,20 @@ class LocalCartLoaderTests: XCTestCase {
         
         sut = nil
         store.completeDeletion(with: anyNSError())
+        
+        XCTAssertTrue(receivedResults.isEmpty)
+    }
+    
+    func test_save_doesNotDeliverInsertionErrorAfterSUTInstanceHasBeenDeallocated() {
+        let store = CartStoreSpy()
+        var sut: LocalCartLoader? = LocalCartLoader(store: store)
+        
+        var receivedResults = [Error?]()
+        sut?.save([makeCartItem()]) { receivedResults.append($0) }
+        
+        store.completeDeletionSuccessfully()
+        sut = nil
+        store.completeInsertion(with: anyNSError())
         
         XCTAssertTrue(receivedResults.isEmpty)
     }
