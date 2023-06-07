@@ -12,10 +12,12 @@ class LocalCartLoader {
         self.store = store
     }
     
-    func save(_ cart: [CartItem]) {
+    func save(_ cart: [CartItem], completion: @escaping (Error?) -> Void) {
         store.deleteCachedCart { [unowned self] error in
-            if error == nil {
-                self.store.insert(cart)
+            if let error = error {
+                completion(error)
+            } else {
+                self.store.insert(cart, completion: completion)
             }
         }
     }
@@ -30,6 +32,7 @@ class CartStore {
     
     private(set) var receivedMessages = [ReceivedMessage]()
     private(set) var deletionCompletions = [(Error?) -> Void]()
+    private(set) var insertionCompletions = [(Error?) -> Void]()
     
     func deleteCachedCart(completion: @escaping (Error?) -> Void) {
         receivedMessages.append(.delete)
@@ -44,8 +47,13 @@ class CartStore {
         deletionCompletions[index](nil)
     }
     
-    func insert(_ cart: [CartItem]) {
+    func insert(_ cart: [CartItem], completion: @escaping (Error?) -> Void) {
         receivedMessages.append(.insert(cart))
+        insertionCompletions.append(completion)
+    }
+    
+    func completeInsertion(with error: Error, at index: Int = 0) {
+        insertionCompletions[index](error)
     }
 }
 
@@ -61,7 +69,7 @@ class LocalCartLoaderTests: XCTestCase {
         let (sut, store) = makeSUT()
         let cart = [makeCartItem(), makeCartItem()]
         
-        sut.save(cart)
+        sut.save(cart) { _ in }
         
         XCTAssertEqual(store.receivedMessages, [.delete])
     }
@@ -71,7 +79,7 @@ class LocalCartLoaderTests: XCTestCase {
         let cart = [makeCartItem(), makeCartItem()]
         let deletionError = anyNSError()
         
-        sut.save(cart)
+        sut.save(cart) { _ in }
         store.completeDeletion(with: deletionError)
         
         XCTAssertEqual(store.receivedMessages, [.delete])
@@ -81,10 +89,47 @@ class LocalCartLoaderTests: XCTestCase {
         let (sut, store) = makeSUT()
         let cart = [makeCartItem(), makeCartItem()]
         
-        sut.save(cart)
+        sut.save(cart) { _ in }
         store.completeDeletionSuccessfully()
         
         XCTAssertEqual(store.receivedMessages, [.delete, .insert(cart)])
+    }
+    
+    func test_save_failsOnDeletionError() {
+        let (sut, store) = makeSUT()
+        let cart = [makeCartItem(), makeCartItem()]
+        let deletionError = anyNSError()
+        let exp = expectation(description: "Wait for completion")
+        
+        var receivedError: Error?
+        sut.save(cart) { error in
+            receivedError = error
+            exp.fulfill()
+        }
+        
+        store.completeDeletion(with: deletionError)
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError as? NSError, deletionError)
+    }
+    
+    func test_save_failsOnInsertionError() {
+        let (sut, store) = makeSUT()
+        let cart = [makeCartItem(), makeCartItem()]
+        let insertionError = anyNSError()
+        let exp = expectation(description: "Wait for completion")
+        
+        var receivedError: Error?
+        sut.save(cart) { error in
+            receivedError = error
+            exp.fulfill()
+        }
+        
+        store.completeDeletionSuccessfully()
+        store.completeInsertion(with: insertionError)
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError as? NSError, insertionError)
     }
     
     // MARK: - Helpers
