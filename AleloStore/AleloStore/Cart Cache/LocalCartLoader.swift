@@ -7,11 +7,13 @@ import Foundation
 public final class LocalCartLoader {
     private let store: CartStore
     
+    public typealias SaveResult = Error?
+    
     public init(store: CartStore) {
         self.store = store
     }
     
-    public func save(_ cart: [CartItem], completion: @escaping (Error?) -> Void) {
+    public func save(_ cart: [CartItem], completion: @escaping (SaveResult) -> Void) {
         store.deleteCachedCart { [weak self] error in
             guard let self = self else { return }
             
@@ -23,7 +25,7 @@ public final class LocalCartLoader {
         }
     }
     
-    private func cache(_ cart: [CartItem], with completion: @escaping (Error?) -> Void) {
+    private func cache(_ cart: [CartItem], with completion: @escaping (SaveResult) -> Void) {
         store.insert(cart) { [weak self] error in
             guard self != nil else { return }
             

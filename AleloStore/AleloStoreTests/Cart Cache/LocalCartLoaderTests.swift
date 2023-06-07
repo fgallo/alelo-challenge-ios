@@ -75,7 +75,7 @@ class LocalCartLoaderTests: XCTestCase {
         let store = CartStoreSpy()
         var sut: LocalCartLoader? = LocalCartLoader(store: store)
         
-        var receivedResults = [Error?]()
+        var receivedResults = [LocalCartLoader.SaveResult]()
         sut?.save([makeCartItem()]) { receivedResults.append($0) }
         
         sut = nil
@@ -88,7 +88,7 @@ class LocalCartLoaderTests: XCTestCase {
         let store = CartStoreSpy()
         var sut: LocalCartLoader? = LocalCartLoader(store: store)
         
-        var receivedResults = [Error?]()
+        var receivedResults = [LocalCartLoader.SaveResult]()
         sut?.save([makeCartItem()]) { receivedResults.append($0) }
         
         store.completeDeletionSuccessfully()
