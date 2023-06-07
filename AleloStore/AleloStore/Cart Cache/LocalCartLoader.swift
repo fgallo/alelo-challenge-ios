@@ -31,8 +31,3 @@ public final class LocalCartLoader {
         }
     }
 }
-
-public protocol CartStore {
-    func deleteCachedCart(completion: @escaping (Error?) -> Void)
-    func insert(_ cart: [CartItem], completion: @escaping (Error?) -> Void)
-}
