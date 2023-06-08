@@ -12,6 +12,19 @@ class CodableCartStore {
         self.storeURL = storeURL
     }
     
+    func deleteCachedCart(completion: @escaping CartStore.DeletionCompletion) {
+        guard FileManager.default.fileExists(atPath: storeURL.path) else {
+            return completion(nil)
+        }
+        
+        do {
+            try FileManager.default.removeItem(at: storeURL)
+            completion(nil)
+        } catch {
+            completion(error)
+        }
+    }
+    
     func insert(_ cart: [LocalCartItem], completion: @escaping CartStore.InsertionCompletion) {
         do {
             let encoder = JSONEncoder()
@@ -104,12 +117,12 @@ class CodableCartStoreTests: XCTestCase {
         let sut = makeSUT()
         
         let firstInsertionError = insert(makeCart().local, to: sut)
-        XCTAssertNil(firstInsertionError, "Expectet to insert cache successfully")
+        XCTAssertNil(firstInsertionError, "Expected to insert cache successfully")
         
         let latestCart = makeCart().local
         let latestInsertionError = insert(latestCart, to: sut)
         
-        XCTAssertNil(latestInsertionError, "Expectet to override cache successfully")
+        XCTAssertNil(latestInsertionError, "Expected to override cache successfully")
         expect(sut, toRetrieve: .found(latestCart))
     }
     
@@ -120,7 +133,35 @@ class CodableCartStoreTests: XCTestCase {
         
         let insertionError = insert(cart, to: sut)
         
-        XCTAssertNotNil(insertionError, "Expectet cache insertion to fail with an error")
+        XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error")
+    }
+    
+    func test_delete_hasNoSideEffectsOnEmptyCache() {
+        let sut = makeSUT()
+        
+        let deletionError = deleteCache(from: sut)
+        
+        XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
+        expect(sut, toRetrieve: .empty)
+    }
+    
+    func test_delete_emptiesPreviouslyInsertedCache() {
+        let sut = makeSUT()
+        insert(makeCart().local, to: sut)
+        
+        let deletionError = deleteCache(from: sut)
+        
+        XCTAssertNil(deletionError, "Expected non-empty cache deletion to succeed")
+        expect(sut, toRetrieve: .empty)
+    }
+    
+    func test_delete_deliversErrorOnDeletionError() {
+        let noDeletePermissionURL = cachesDirectory()
+        let sut = makeSUT(storeURL: noDeletePermissionURL)
+        
+        let deletionError = deleteCache(from: sut)
+        
+        XCTAssertNotNil(deletionError, "Expected cache deletion to fail")
     }
     
     // MARK: - Helpers
@@ -129,6 +170,17 @@ class CodableCartStoreTests: XCTestCase {
         let sut = CodableCartStore(storeURL: storeURL ?? testSpecificStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func deleteCache(from sut: CodableCartStore) -> Error? {
+        let exp = expectation(description: "Wait for cache deletion")
+        var deletionError: Error?
+        sut.deleteCachedCart { receivedDeletionError in
+            deletionError = receivedDeletionError
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+        return deletionError
     }
     
     @discardableResult
@@ -170,8 +222,11 @@ class CodableCartStoreTests: XCTestCase {
     }
     
     private func testSpecificStoreURL() -> URL {
-        return FileManager.default.urls(for: .cachesDirectory,
-                                        in: .userDomainMask).first!.appendingPathComponent("\(type(of: self)).store")
+        return cachesDirectory().appendingPathComponent("\(type(of: self)).store")
+    }
+    
+    private func cachesDirectory() -> URL {
+        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
     }
     
     private func setupEmptyStoreState() {
@@ -185,4 +240,5 @@ class CodableCartStoreTests: XCTestCase {
     private func deleteStoreArtifacts() {
         try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
+    
 }
