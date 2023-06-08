@@ -28,7 +28,7 @@ final class ProductCellController {
     private func binded(_ cell: ProductCell) -> ProductCell {
         cell.nameLabel.text = viewModel.name
         cell.regularPriceLabel.text = viewModel.regularPrice
-        cell.salePriceLabel.text = viewModel.salePrice
+        cell.salePriceLabel.attributedText = viewModel.salePrice
         cell.sizesLabel.text = viewModel.sizes
         cell.saleContainer.isHidden = !viewModel.isOnSale
         cell.productImageView.image = nil

@@ -25,8 +25,11 @@ final class ProductCellViewModel<Image> {
         return model.regularPrice
     }
     
-    var salePrice: String? {
-        return model.salePrice
+    var salePrice: NSAttributedString? {
+        let price = model.salePrice
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: price)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
+        return attributeString
     }
     
     var sizes: String? {
