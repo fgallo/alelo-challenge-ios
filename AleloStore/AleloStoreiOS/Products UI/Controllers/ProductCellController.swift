@@ -18,7 +18,7 @@ final class ProductCellController {
     }
     
     func preload() {
-        viewModel.loadImageData()
+        viewModel.preloadImageData()
     }
     
     func cancelLoad() {

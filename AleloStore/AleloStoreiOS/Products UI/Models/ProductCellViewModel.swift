@@ -64,6 +64,15 @@ final class ProductCellViewModel<Image> {
         }
     }
     
+    func preloadImageData() {
+        if let url = model.imageURL {
+            onImageLoadStateChange?(true)
+            task = imageLoader.loadImageData(from: url) { [weak self] _ in
+                self?.onImageLoadStateChange?(false)
+            }
+        }
+    }
+    
     private func handle(_ result: ProductImageDataLoader.Result) {
         if let image = (try? result.get()).flatMap(imageTransformer) {
             onImageLoad?(image)

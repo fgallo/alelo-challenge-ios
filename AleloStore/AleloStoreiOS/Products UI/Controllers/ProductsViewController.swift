@@ -7,15 +7,12 @@ import UIKit
 final public class ProductsViewController: UITableViewController, UITableViewDataSourcePrefetching {
     var viewModel: ProductsViewModel?
     var tableModel = [ProductCellController]() {
-        didSet {
-            tableView.reloadData()
-        }
+        didSet { tableView.reloadData() }
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.prefetchDataSource = self
         binding()
         refresh()
     }

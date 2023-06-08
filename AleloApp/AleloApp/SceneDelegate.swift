@@ -13,8 +13,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let url = URL(string: "http://www.mocky.io/v2/59b6a65a0f0000e90471257d")!
-        let session = URLSession(configuration: .ephemeral)
-        let client = URLSessionHTTPClient(session: session)
+        
+        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
         let productsLoader = RemoteProductsLoader(url: url, client: client)
         let imageLoader = RemoteProductImageDataLoader(client: client)
         
