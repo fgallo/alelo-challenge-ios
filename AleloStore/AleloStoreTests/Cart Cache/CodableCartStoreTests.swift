@@ -13,10 +13,14 @@ class CodableCartStore {
     }
     
     func insert(_ cart: [LocalCartItem], completion: @escaping CartStore.InsertionCompletion) {
-        let encoder = JSONEncoder()
-        let encoded = try! encoder.encode(cart)
-        try! encoded.write(to: storeURL)
-        completion(nil)
+        do {
+            let encoder = JSONEncoder()
+            let encoded = try encoder.encode(cart)
+            try encoded.write(to: storeURL)
+            completion(nil)
+        } catch {
+            completion(error)
+        }
     }
     
     func retrieve(completion: @escaping CartStore.RetrieveCompletion) {
@@ -109,6 +113,16 @@ class CodableCartStoreTests: XCTestCase {
         expect(sut, toRetrieve: .found(latestCart))
     }
     
+    func test_insert_deliversErrorOnInsertionError() {
+        let invalidStoreURL = URL(string: "invalid://store-url")
+        let sut = makeSUT(storeURL: invalidStoreURL)
+        let cart = makeCart().local
+        
+        let insertionError = insert(cart, to: sut)
+        
+        XCTAssertNotNil(insertionError, "Expectet cache insertion to fail with an error")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil, file: StaticString = #filePath, line: UInt = #line) -> CodableCartStore {
@@ -117,7 +131,7 @@ class CodableCartStoreTests: XCTestCase {
         return sut
     }
     
-    @discardableResult 
+    @discardableResult
     private func insert(_ cart: [LocalCartItem], to sut: CodableCartStore) -> Error? {
         let exp = expectation(description: "Wait for cache insertion")
         var insertionError: Error?
