@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct LocalCartItem: Equatable {
+public struct LocalCartItem: Equatable, Codable {
     public let product: LocalProduct
     public var quantity: Int
     

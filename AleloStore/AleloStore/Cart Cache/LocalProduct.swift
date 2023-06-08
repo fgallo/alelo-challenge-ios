@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct LocalProduct: Equatable {
+public struct LocalProduct: Equatable, Codable {
     public let name: String
     public let regularPrice: String
     public let salePrice: String

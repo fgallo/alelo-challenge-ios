@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct LocalProductSize: Equatable {
+public struct LocalProductSize: Equatable, Codable {
     public let size: String
     public let sku: String
     public let available: Bool
