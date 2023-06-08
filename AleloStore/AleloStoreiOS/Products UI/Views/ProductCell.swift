@@ -19,4 +19,10 @@ public final class ProductCell: UITableViewCell {
         imageContainer.layer.borderWidth = 1
         imageContainer.layer.borderColor = UIColor.lightGray.cgColor
     }
+    
+    var onAdd: (() -> Void)?
+    
+    @IBAction private func addButtonTapped() {
+        onAdd?()
+    }
 }

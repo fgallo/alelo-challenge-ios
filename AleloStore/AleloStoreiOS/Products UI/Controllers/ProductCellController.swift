@@ -12,7 +12,8 @@ final class ProductCellController {
     }
     
     func view(in tableView: UITableView) -> UITableViewCell {
-        let cell = binded(tableView.dequeueReusableCell(withIdentifier: "ProductCell") as! ProductCell)
+        let cell: ProductCell = tableView.dequeueReusableCell()
+        binded(cell)
         viewModel.loadImageData()
         return cell
     }
@@ -25,7 +26,7 @@ final class ProductCellController {
         viewModel.cancelImageDataLoad()
     }
     
-    private func binded(_ cell: ProductCell) -> ProductCell {
+    private func binded(_ cell: ProductCell) {
         cell.nameLabel.text = viewModel.name
         cell.regularPriceLabel.text = viewModel.regularPrice
         cell.salePriceLabel.attributedText = viewModel.salePrice
@@ -41,6 +42,8 @@ final class ProductCellController {
             cell?.imageContainer.isShimmering = isLoading
         }
         
-        return cell
+        cell.onAdd = { [weak self] in
+            self?.viewModel.addToCart()
+        }
     }
 }

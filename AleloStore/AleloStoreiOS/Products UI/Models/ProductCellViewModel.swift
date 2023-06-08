@@ -10,6 +10,7 @@ final class ProductCellViewModel<Image> {
     private let model: Product
     private let imageLoader: ProductImageDataLoader
     private let imageTransformer: (Data) -> Image?
+    private var addedToCart = 0
     
     init(model: Product, imageLoader: ProductImageDataLoader, imageTransformer: @escaping (Data) -> Image?) {
         self.model = model
@@ -82,6 +83,10 @@ final class ProductCellViewModel<Image> {
     
     func cancelImageDataLoad() {
         task?.cancel()
+    }
+    
+    func addToCart() {
+        addedToCart += 1
     }
     
 }

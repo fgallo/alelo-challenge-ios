@@ -34,6 +34,9 @@
                                                 <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
                                                 <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="addButtonTapped" destination="OUp-Ap-sCc" eventType="touchUpInside" id="lOg-yv-wj3"/>
+                                            </connections>
                                         </button>
                                         <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KAj-ma-gSy">
                                             <rect key="frame" x="20" y="11" width="141.33333333333334" height="198"/>

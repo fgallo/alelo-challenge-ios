@@ -21,10 +21,22 @@ final public class ProductsViewController: UITableViewController, UITableViewDat
         viewModel?.loadProducts()
     }
     
+    @objc private func showCart() {
+        viewModel?.saveCart()
+    }
+    
     private func binding() {
         viewModel?.onLoadingStateChange = { [weak self] isLoading in
             isLoading ? self?.refreshControl?.beginRefreshing() : self?.refreshControl?.endRefreshing()
         }
+        
+        viewModel?.onSaveCart = { error in
+            guard let _ = error else {
+                return
+            }
+        }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(showCart))
     }
      
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

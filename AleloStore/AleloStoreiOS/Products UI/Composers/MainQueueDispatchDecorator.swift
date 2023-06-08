@@ -36,3 +36,17 @@ extension MainQueueDispatchDecorator: ProductImageDataLoader where T == ProductI
         }
     }
 }
+
+extension MainQueueDispatchDecorator: CartCache where T == CartCache {
+    func save(_ cart: [CartItem], completion: @escaping (CartCache.SaveResult) -> Void) {
+        decoratee.save(cart) { [weak self] result in
+            self?.dispatch { completion(result) }
+        }
+    }
+    
+    func load(completion: @escaping (CartCache.LoadResult) -> Void) {
+        decoratee.load { [weak self] result in
+            self?.dispatch { completion(result) }
+        }
+    }
+}

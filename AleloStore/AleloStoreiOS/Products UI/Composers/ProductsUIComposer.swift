@@ -8,9 +8,10 @@ import AleloStore
 public final class ProductsUIComposer {
     private init() {}
     
-    public static func productsComposedWith(productsLoader: ProductsLoader, imageLoader: ProductImageDataLoader) -> ProductsViewController {
+    public static func productsComposedWith(productsLoader: ProductsLoader, imageLoader: ProductImageDataLoader, cartCache: CartCache) -> ProductsViewController {
         let productsViewModel = ProductsViewModel(
-            productsLoader: MainQueueDispatchDecorator(decoratee: productsLoader)
+            productsLoader: MainQueueDispatchDecorator(decoratee: productsLoader),
+            cartCache: MainQueueDispatchDecorator(decoratee: cartCache)
         )
         
         let productsViewController = makeProductsViewController(title: "Products")
