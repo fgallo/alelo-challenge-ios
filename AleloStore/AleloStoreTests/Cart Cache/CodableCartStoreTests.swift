@@ -60,12 +60,7 @@ class CodableCartStoreTests: XCTestCase {
         let sut = makeSUT()
         let cart = makeCart().local
         
-        let exp = expectation(description: "Wait for cache insertion")
-        sut.insert(cart) { insertionError in
-            XCTAssertNil(insertionError, "Expected cart to be inserted successfully")
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        insert(cart, to: sut)
         
         expect(sut, toRetrieve: .found(cart))
     }
@@ -74,12 +69,7 @@ class CodableCartStoreTests: XCTestCase {
         let sut = makeSUT()
         let cart = makeCart().local
         
-        let exp = expectation(description: "Wait for cache insertion")
-        sut.insert(cart) { insertionError in
-            XCTAssertNil(insertionError, "Expected cart to be inserted successfully")
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        insert(cart, to: sut)
         
         expect(sut, toRetrieveTwice: .found(cart))
     }
@@ -90,6 +80,15 @@ class CodableCartStoreTests: XCTestCase {
         let sut = CodableCartStore(storeURL: testSpecificStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func insert(_ cart: [LocalCartItem], to sut: CodableCartStore) {
+        let exp = expectation(description: "Wait for cache insertion")
+        sut.insert(cart) { insertionError in
+            XCTAssertNil(insertionError, "Expected cart to be inserted successfully")
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
     
     private func expect(_ sut: CodableCartStore, toRetrieveTwice expectedResult: RetrieveCachedCartResult, file: StaticString = #filePath, line: UInt = #line) {
