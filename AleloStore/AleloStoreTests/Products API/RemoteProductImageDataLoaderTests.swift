@@ -13,6 +13,15 @@ class RemoteProductImageDataLoaderTests: XCTestCase {
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
+    func test_loadImageDataFromURL_requestsDataFromURL() {
+        let url = anyURL()
+        let (sut, client) = makeSUT()
+        
+        sut.loadImageData(from: url) { _ in }
+        
+        XCTAssertEqual(client.requestedURLs, [url])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteProductImageDataLoader, client: HTTPClientSpy) {

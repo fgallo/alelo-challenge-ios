@@ -10,4 +10,8 @@ public final class RemoteProductImageDataLoader {
     public init(client: HTTPClient) {
         self.client = client
     }
+    
+    public func loadImageData(from url: URL, completion: @escaping (Any) -> Void) {
+        client.get(from: url) { _ in }
+    }
 }
