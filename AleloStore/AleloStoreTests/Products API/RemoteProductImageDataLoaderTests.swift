@@ -32,6 +32,15 @@ class RemoteProductImageDataLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
+    func test_loadImageDataFromURL_deliversErrorOnClientError() {
+        let (sut, client) = makeSUT()
+        let clientError = NSError(domain: "a client error", code: 0)
+        
+        expect(sut, toCompleteWith: .failure(clientError), when: {
+            client.complete(with: clientError)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteProductImageDataLoader, client: HTTPClientSpy) {
@@ -40,6 +49,31 @@ class RemoteProductImageDataLoaderTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(client, file: file, line: line)
         return (sut, client)
+    }
+    
+    private func expect(_ sut: RemoteProductImageDataLoader, toCompleteWith expectedResult: ProductImageDataLoader.Result, when action: () -> (),
+                        file: StaticString = #filePath, line: UInt = #line) {
+        let url = anyURL()
+        let exp = expectation(description: "Wait for load completion")
+        
+        sut.loadImageData(from: url) { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case let (.success(receivedData), .success(expectedData)):
+                XCTAssertEqual(receivedData, expectedData, file: file, line: line)
+                
+            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+                
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
 }

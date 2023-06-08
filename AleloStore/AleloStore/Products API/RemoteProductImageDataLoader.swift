@@ -6,12 +6,17 @@ import Foundation
 
 public final class RemoteProductImageDataLoader {
     private let client: HTTPClient
- 
+    
     public init(client: HTTPClient) {
         self.client = client
     }
     
-    public func loadImageData(from url: URL, completion: @escaping (Any) -> Void) {
-        client.get(from: url) { _ in }
+    public func loadImageData(from url: URL, completion: @escaping (ProductImageDataLoader.Result) -> Void) {
+        client.get(from: url) { result in
+            switch result {
+            case let .failure(error): completion(.failure(error))
+            default: break
+            }
+        }
     }
 }
