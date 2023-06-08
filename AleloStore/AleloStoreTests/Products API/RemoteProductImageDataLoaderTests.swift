@@ -41,6 +41,27 @@ class RemoteProductImageDataLoaderTests: XCTestCase {
         })
     }
     
+    func test_loadImageDataFromURL_deliversInvalidDataErrorOnNon200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        
+        let samples = [199, 201, 300, 400, 500]
+        
+        samples.enumerated().forEach { index, code in
+            expect(sut, toCompleteWith: failure(.invalidData), when: {
+                client.complete(withStatusCode: code, data: anyData(), at: index)
+            })
+        }
+    }
+    
+    func test_loadImageDataFromURL_deliversInvalidDataErrorOn200HTTPResponseWithEmptyData() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut, toCompleteWith: failure(.invalidData), when: {
+            let emptyData = Data()
+            client.complete(withStatusCode: 200, data: emptyData)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteProductImageDataLoader, client: HTTPClientSpy) {
@@ -49,6 +70,10 @@ class RemoteProductImageDataLoaderTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(client, file: file, line: line)
         return (sut, client)
+    }
+    
+    private func failure(_ error: RemoteProductImageDataLoader.Error) -> ProductImageDataLoader.Result {
+        return .failure(error)
     }
     
     private func expect(_ sut: RemoteProductImageDataLoader, toCompleteWith expectedResult: ProductImageDataLoader.Result, when action: () -> (),

@@ -11,11 +11,18 @@ public final class RemoteProductImageDataLoader {
         self.client = client
     }
     
+    public enum Error: Swift.Error {
+        case invalidData
+    }
+    
     public func loadImageData(from url: URL, completion: @escaping (ProductImageDataLoader.Result) -> Void) {
         client.get(from: url) { result in
             switch result {
-            case let .failure(error): completion(.failure(error))
-            default: break
+            case .success:
+                completion(.failure(Error.invalidData))
+                
+            case let .failure(error):
+                completion(.failure(error))
             }
         }
     }
