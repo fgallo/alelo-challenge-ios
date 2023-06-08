@@ -12,7 +12,7 @@ class CodableCartStore: CartStore {
         self.storeURL = storeURL
     }
     
-    func deleteCachedCart(completion: @escaping CartStore.DeletionCompletion) {
+    func deleteCachedCart(completion: @escaping DeletionCompletion) {
         guard FileManager.default.fileExists(atPath: storeURL.path) else {
             return completion(nil)
         }
@@ -25,7 +25,7 @@ class CodableCartStore: CartStore {
         }
     }
     
-    func insert(_ cart: [LocalCartItem], completion: @escaping CartStore.InsertionCompletion) {
+    func insert(_ cart: [LocalCartItem], completion: @escaping InsertionCompletion) {
         do {
             let encoder = JSONEncoder()
             let encoded = try encoder.encode(cart)
@@ -36,7 +36,7 @@ class CodableCartStore: CartStore {
         }
     }
     
-    func retrieve(completion: @escaping CartStore.RetrieveCompletion) {
+    func retrieve(completion: @escaping RetrieveCompletion) {
         guard let data = try? Data(contentsOf: storeURL) else {
             return completion(.empty)
         }
@@ -166,13 +166,13 @@ class CodableCartStoreTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(storeURL: URL? = nil, file: StaticString = #filePath, line: UInt = #line) -> CodableCartStore {
+    private func makeSUT(storeURL: URL? = nil, file: StaticString = #filePath, line: UInt = #line) -> CartStore {
         let sut = CodableCartStore(storeURL: storeURL ?? testSpecificStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
     
-    private func deleteCache(from sut: CodableCartStore) -> Error? {
+    private func deleteCache(from sut: CartStore) -> Error? {
         let exp = expectation(description: "Wait for cache deletion")
         var deletionError: Error?
         sut.deleteCachedCart { receivedDeletionError in
@@ -184,7 +184,7 @@ class CodableCartStoreTests: XCTestCase {
     }
     
     @discardableResult
-    private func insert(_ cart: [LocalCartItem], to sut: CodableCartStore) -> Error? {
+    private func insert(_ cart: [LocalCartItem], to sut: CartStore) -> Error? {
         let exp = expectation(description: "Wait for cache insertion")
         var insertionError: Error?
         sut.insert(cart) { receivedInsertionError in
@@ -195,12 +195,12 @@ class CodableCartStoreTests: XCTestCase {
         return insertionError
     }
     
-    private func expect(_ sut: CodableCartStore, toRetrieveTwice expectedResult: RetrieveCachedCartResult, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(_ sut: CartStore, toRetrieveTwice expectedResult: RetrieveCachedCartResult, file: StaticString = #filePath, line: UInt = #line) {
         expect(sut, toRetrieve: expectedResult, file: file, line: line)
         expect(sut, toRetrieve: expectedResult, file: file, line: line)
     }
     
-    private func expect(_ sut: CodableCartStore, toRetrieve expectedResult: RetrieveCachedCartResult, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(_ sut: CartStore, toRetrieve expectedResult: RetrieveCachedCartResult, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for cache retrieval")
         
         sut.retrieve { retrievedResult in
