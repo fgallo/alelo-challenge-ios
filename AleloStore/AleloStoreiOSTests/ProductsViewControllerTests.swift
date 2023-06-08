@@ -66,7 +66,7 @@ final class ProductsViewControllerTests: XCTestCase {
             name: "new name",
             regularPrice: "new price",
             salePrice: "new sale name",
-            onSale: false,
+            onSale: true,
             imageURL: nil,
             size: "new size",
             sku: "new sku",

@@ -26,6 +26,10 @@ final class ProductCellViewModel<Image> {
     }
     
     var salePrice: NSAttributedString? {
+        guard model.onSale else {
+            return nil
+        }
+        
         let price = model.salePrice
         let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: price)
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
