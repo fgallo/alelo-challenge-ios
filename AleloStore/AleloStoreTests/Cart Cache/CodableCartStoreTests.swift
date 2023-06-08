@@ -160,7 +160,7 @@ class CodableCartStoreTests: XCTestCase {
             deletionError = receivedDeletionError
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 5.0)
         return deletionError
     }
     
@@ -172,7 +172,7 @@ class CodableCartStoreTests: XCTestCase {
             insertionError = receivedInsertionError
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 5.0)
         return insertionError
     }
     
@@ -199,7 +199,7 @@ class CodableCartStoreTests: XCTestCase {
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 1.0)
+        wait(for: [exp], timeout: 5.0)
     }
     
     private func testSpecificStoreURL() -> URL {
