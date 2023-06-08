@@ -15,12 +15,21 @@ public final class RemoteProductImageDataLoader {
         case invalidData
     }
     
-    public func loadImageData(from url: URL, completion: @escaping (ProductImageDataLoader.Result) -> Void) {
-        client.get(from: url) { [weak self] result in
+    private struct HTTPTaskWrapper: ProductImageDataLoaderTask {
+        let wrapped: HTTPClientTask
+        
+        func cancel() {
+            wrapped.cancel()
+        }
+    }
+    
+    @discardableResult
+    public func loadImageData(from url: URL, completion: @escaping (ProductImageDataLoader.Result) -> Void) -> ProductImageDataLoaderTask {
+        return HTTPTaskWrapper(wrapped: client.get(from: url) { [weak self] result in
             guard self != nil else { return }
             
             switch result {
-            case let .success(data, response):
+            case let .success((data, response)):
                 if response.statusCode == 200, !data.isEmpty {
                     completion(.success(data))
                 } else {
@@ -30,6 +39,6 @@ public final class RemoteProductImageDataLoader {
             case let .failure(error):
                 completion(.failure(error))
             }
-        }
+        })
     }
 }
