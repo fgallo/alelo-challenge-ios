@@ -5,7 +5,7 @@
 import XCTest
 import AleloStore
 
-class CodableCartStore {
+class CodableCartStore: CartStore {
     private let storeURL: URL
     
     init(storeURL: URL) {
