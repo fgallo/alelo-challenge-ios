@@ -7,7 +7,7 @@ import Foundation
 public class CodableCartStore: CartStore {
     private let storeURL: URL
     
-    private let queue = DispatchQueue(label: "\(CodableCartStore.self)Queue", qos: .userInitiated)
+    private let queue = DispatchQueue(label: "\(CodableCartStore.self)Queue", qos: .userInitiated, attributes: .concurrent)
     
     public init(storeURL: URL) {
         self.storeURL = storeURL
@@ -15,7 +15,7 @@ public class CodableCartStore: CartStore {
     
     public func deleteCachedCart(completion: @escaping DeletionCompletion) {
         let storeURL = self.storeURL
-        queue.async {
+        queue.async(flags: .barrier) {
             guard FileManager.default.fileExists(atPath: storeURL.path) else {
                 return completion(nil)
             }
@@ -31,7 +31,7 @@ public class CodableCartStore: CartStore {
     
     public func insert(_ cart: [LocalCartItem], completion: @escaping InsertionCompletion) {
         let storeURL = self.storeURL
-        queue.async {
+        queue.async(flags: .barrier) {
             do {
                 let encoder = JSONEncoder()
                 let encoded = try encoder.encode(cart)
