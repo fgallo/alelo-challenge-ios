@@ -21,6 +21,7 @@
 		4F350A5E2A31696B001F57CA /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F350A5D2A31696B001F57CA /* SharedTestHelpers.swift */; };
 		4F350A602A316A1C001F57CA /* CartStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F350A5F2A316A1C001F57CA /* CartStoreSpy.swift */; };
 		4F350A622A316A60001F57CA /* CartCacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F350A612A316A60001F57CA /* CartCacheTestHelpers.swift */; };
+		4F55A1062A323443004EFFB3 /* ProductImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A0732A2EDD2500F68ADC /* ProductImageDataLoader.swift */; };
 		4F69E5A12A2EAF4500D701A3 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69E5A02A2EAF4500D701A3 /* ProductCell.swift */; };
 		4F704CB92A2EA63C00E05741 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F704CB82A2EA63C00E05741 /* ProductsViewController.swift */; };
 		4F7F77012A2E970C0057F4FD /* ProductsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F77002A2E970C0057F4FD /* ProductsViewControllerTests.swift */; };
@@ -37,7 +38,6 @@
 		4F9F3D012A2BE5DF004134E5 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F3D002A2BE5DF004134E5 /* HTTPClient.swift */; };
 		4F9F3D032A2BE654004134E5 /* ProductsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F3D022A2BE654004134E5 /* ProductsMapper.swift */; };
 		4FC63D832A2ECDE10051807E /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC63D822A2ECDE10051807E /* UIView+Shimmering.swift */; };
-		4FC7A0742A2EDD2500F68ADC /* ProductImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A0732A2EDD2500F68ADC /* ProductImageDataLoader.swift */; };
 		4FC7A07A2A2EDE2000F68ADC /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A0792A2EDE2000F68ADC /* UIImage+TestHelpers.swift */; };
 		4FC7A07C2A2EDED400F68ADC /* ProductCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A07B2A2EDED400F68ADC /* ProductCell+TestHelpers.swift */; };
 		4FC7A07E2A2EDF2B00F68ADC /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC7A07D2A2EDF2B00F68ADC /* UIRefreshControl+TestHelpers.swift */; };
@@ -322,6 +322,7 @@
 				4F93FF2C2A2BB262008F0BF0 /* Product.swift */,
 				4F93FF2E2A2BB31C008F0BF0 /* ProductSize.swift */,
 				4F93FF3A2A2BB691008F0BF0 /* ProductsLoader.swift */,
+				4FC7A0732A2EDD2500F68ADC /* ProductImageDataLoader.swift */,
 			);
 			path = "Products Feature";
 			sourceTree = "<group>";
@@ -335,14 +336,6 @@
 				4F9953482A2D40690038594E /* URLSessionHTTPClient.swift */,
 			);
 			path = "Products API";
-			sourceTree = "<group>";
-		};
-		4FC7A0722A2EDD0800F68ADC /* Product Image Loader */ = {
-			isa = PBXGroup;
-			children = (
-				4FC7A0732A2EDD2500F68ADC /* ProductImageDataLoader.swift */,
-			);
-			path = "Product Image Loader";
 			sourceTree = "<group>";
 		};
 		4FC7A0752A2EDD4900F68ADC /* Products UI */ = {
@@ -419,7 +412,6 @@
 		4FFC29202A2E5244003C20CB /* AleloStoreiOS */ = {
 			isa = PBXGroup;
 			children = (
-				4FC7A0722A2EDD0800F68ADC /* Product Image Loader */,
 				4FC7A0752A2EDD4900F68ADC /* Products UI */,
 			);
 			path = AleloStoreiOS;
@@ -653,6 +645,7 @@
 				4F93FF2D2A2BB262008F0BF0 /* Product.swift in Sources */,
 				4F9F3D032A2BE654004134E5 /* ProductsMapper.swift in Sources */,
 				4FCE37022A310D14005C7FDC /* LocalCartItem.swift in Sources */,
+				4F55A1062A323443004EFFB3 /* ProductImageDataLoader.swift in Sources */,
 				4FCE37062A310D2A005C7FDC /* LocalProductSize.swift in Sources */,
 				4F93FF3B2A2BB691008F0BF0 /* ProductsLoader.swift in Sources */,
 				4F1244722A3223EA00663361 /* CodableCartStore.swift in Sources */,
@@ -687,7 +680,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FC7A0742A2EDD2500F68ADC /* ProductImageDataLoader.swift in Sources */,
 				4F18DE3A2A2F7226008E369B /* ProductsUIComposer.swift in Sources */,
 				4F18DE422A2FA3E5008E369B /* ProductCellViewModel.swift in Sources */,
 				4FC63D832A2ECDE10051807E /* UIView+Shimmering.swift in Sources */,
