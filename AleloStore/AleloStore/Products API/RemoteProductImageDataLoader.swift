@@ -4,7 +4,7 @@
 
 import Foundation
 
-public final class RemoteProductImageDataLoader {
+public final class RemoteProductImageDataLoader: ProductImageDataLoader {
     private let client: HTTPClient
     
     public init(client: HTTPClient) {
