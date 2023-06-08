@@ -71,6 +71,19 @@ class RemoteProductImageDataLoaderTests: XCTestCase {
         })
     }
     
+    func test_loadImageDataFromURL_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let client = HTTPClientSpy()
+        var sut: RemoteProductImageDataLoader? = RemoteProductImageDataLoader(client: client)
+
+        var capturedResults = [ProductImageDataLoader.Result]()
+        sut?.loadImageData(from: anyURL()) { capturedResults.append($0) }
+
+        sut = nil
+        client.complete(withStatusCode: 200, data: anyData())
+
+        XCTAssertTrue(capturedResults.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteProductImageDataLoader, client: HTTPClientSpy) {

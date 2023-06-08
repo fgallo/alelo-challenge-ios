@@ -16,7 +16,9 @@ public final class RemoteProductImageDataLoader {
     }
     
     public func loadImageData(from url: URL, completion: @escaping (ProductImageDataLoader.Result) -> Void) {
-        client.get(from: url) { result in
+        client.get(from: url) { [weak self] result in
+            guard self != nil else { return }
+            
             switch result {
             case let .success(data, response):
                 if response.statusCode == 200, !data.isEmpty {
