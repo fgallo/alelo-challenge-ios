@@ -147,62 +147,6 @@ class LocalCartLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private class CartStoreSpy: CartStore {
-        enum ReceivedMessage: Equatable {
-            case insert([LocalCartItem])
-            case delete
-            case retrieve
-        }
-        
-        private(set) var receivedMessages = [ReceivedMessage]()
-        private(set) var deletionCompletions = [(Error?) -> Void]()
-        private(set) var insertionCompletions = [(Error?) -> Void]()
-        private(set) var retrievalCompletions = [(RetrieveCachedCartResult) -> Void]()
-        
-        func deleteCachedCart(completion: @escaping DeletionCompletion) {
-            receivedMessages.append(.delete)
-            deletionCompletions.append(completion)
-        }
-        
-        func completeDeletion(with error: Error, at index: Int = 0) {
-            deletionCompletions[index](error)
-        }
-        
-        func completeDeletionSuccessfully(at index: Int = 0) {
-            deletionCompletions[index](nil)
-        }
-        
-        func insert(_ cart: [LocalCartItem], completion: @escaping InsertionCompletion) {
-            receivedMessages.append(.insert(cart))
-            insertionCompletions.append(completion)
-        }
-        
-        func completeInsertion(with error: Error, at index: Int = 0) {
-            insertionCompletions[index](error)
-        }
-        
-        func completeInsertionSuccessfully(at index: Int = 0) {
-            insertionCompletions[index](nil)
-        }
-        
-        func retrieve(completion: @escaping RetrieveCompletion) {
-            receivedMessages.append(.retrieve)
-            retrievalCompletions.append(completion)
-        }
-        
-        func completeRetrieval(with error: Error, at index: Int = 0) {
-            retrievalCompletions[index](.failure(error))
-        }
-        
-        func completeRetrievalWithEmptyCache(index: Int = 0) {
-            retrievalCompletions[index](.empty)
-        }
-        
-        func completeRetrieval(with cart: [LocalCartItem], at index: Int = 0) {
-            retrievalCompletions[index](.found(cart))
-        }
-    }
-    
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LocalCartLoader, store: CartStoreSpy) {
         let store = CartStoreSpy()
         let sut = LocalCartLoader(store: store)
@@ -247,40 +191,6 @@ class LocalCartLoaderTests: XCTestCase {
 
         action()
         wait(for: [exp], timeout: 1.0)
-    }
-    
-    private func makeCartItem() -> CartItem {
-        let size = ProductSize(size: "a size", sku: "a sku", available: true)
-        let product = Product(name: "a name", regularPrice: "a regular price",
-                              salePrice: "a sale price", onSale: true,
-                              imageURL: anyURL(), sizes: [size])
-        return CartItem(product: product, quantity: 1)
-    }
-    
-    private func makeCart() -> (models: [CartItem], local: [LocalCartItem]) {
-        let models = [makeCartItem(), makeCartItem()]
-        let local = models.map { cartItem in
-            let localSizes = cartItem.product.sizes.map { LocalProductSize(size: $0.size, sku: $0.sku, available: $0.available) }
-            let localProduct = LocalProduct(
-                name: cartItem.product.name,
-                regularPrice: cartItem.product.regularPrice,
-                salePrice: cartItem.product.salePrice,
-                onSale: cartItem.product.onSale,
-                imageURL: cartItem.product.imageURL,
-                sizes: localSizes
-            )
-            return LocalCartItem(product: localProduct, quantity: cartItem.quantity)
-        }
-        
-        return (models, local)
-    }
-    
-    private func anyNSError() -> NSError {
-        return NSError(domain: "any error", code: 0)
-    }
-    
-    private func anyURL() -> URL? {
-        return URL(string: "http://any-url.com")
     }
     
 }

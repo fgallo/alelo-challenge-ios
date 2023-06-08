@@ -6,6 +6,10 @@ import XCTest
 import AleloStore
 
 class CodableCartStore {
+    func insert(_ cart: [LocalCartItem], completion: @escaping CartStore.InsertionCompletion) {
+        
+    }
+    
     func retrieve(completion: @escaping CartStore.RetrieveCompletion) {
         completion(.empty)
     }
