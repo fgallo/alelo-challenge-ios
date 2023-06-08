@@ -51,6 +51,7 @@
 		4FCE37022A310D14005C7FDC /* LocalCartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE37012A310D14005C7FDC /* LocalCartItem.swift */; };
 		4FCE37042A310D24005C7FDC /* LocalProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE37032A310D24005C7FDC /* LocalProduct.swift */; };
 		4FCE37062A310D2A005C7FDC /* LocalProductSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE37052A310D2A005C7FDC /* LocalProductSize.swift */; };
+		4FD0F86F2A32763E000F01B6 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F86E2A32763E000F01B6 /* MainQueueDispatchDecorator.swift */; };
 		4FF4192F2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		4FFC290D2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */; };
 		4FFC290E2A2D508F003C20CB /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
@@ -147,6 +148,7 @@
 		4FCE37012A310D14005C7FDC /* LocalCartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCartItem.swift; sourceTree = "<group>"; };
 		4FCE37032A310D24005C7FDC /* LocalProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalProduct.swift; sourceTree = "<group>"; };
 		4FCE37052A310D2A005C7FDC /* LocalProductSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalProductSize.swift; sourceTree = "<group>"; };
+		4FD0F86E2A32763E000F01B6 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreAPIEndToEndTests.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				4F18DE392A2F7226008E369B /* ProductsUIComposer.swift */,
+				4FD0F86E2A32763E000F01B6 /* MainQueueDispatchDecorator.swift */,
 			);
 			path = Composers;
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD0F86F2A32763E000F01B6 /* MainQueueDispatchDecorator.swift in Sources */,
 				4F18DE3A2A2F7226008E369B /* ProductsUIComposer.swift in Sources */,
 				4F18DE422A2FA3E5008E369B /* ProductCellViewModel.swift in Sources */,
 				4FC63D832A2ECDE10051807E /* UIView+Shimmering.swift in Sources */,

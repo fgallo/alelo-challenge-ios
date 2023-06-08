@@ -9,10 +9,18 @@ public final class ProductsUIComposer {
     private init() {}
     
     public static func productsComposedWith(productsLoader: ProductsLoader, imageLoader: ProductImageDataLoader) -> ProductsViewController {
-        let productsViewModel = ProductsViewModel(productsLoader: productsLoader)
+        let productsViewModel = ProductsViewModel(
+            productsLoader: MainQueueDispatchDecorator(decoratee: productsLoader)
+        )
+        
         let productsViewController = makeProductsViewController(title: "Products")
         productsViewController.viewModel = productsViewModel
-        productsViewModel.onProductsLoad = adaptProductsToCellControllers(forwardingTo: productsViewController, loader: imageLoader)
+        
+        productsViewModel.onProductsLoad = adaptProductsToCellControllers(
+            forwardingTo: productsViewController,
+            loader: MainQueueDispatchDecorator(decoratee: imageLoader)
+        )
+        
         return productsViewController
     }
     
