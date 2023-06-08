@@ -159,7 +159,7 @@ class LocalCartLoaderTests: XCTestCase {
         private(set) var insertionCompletions = [(Error?) -> Void]()
         private(set) var retrievalCompletions = [(RetrieveCachedCartResult) -> Void]()
         
-        func deleteCachedCart(completion: @escaping (Error?) -> Void) {
+        func deleteCachedCart(completion: @escaping DeletionCompletion) {
             receivedMessages.append(.delete)
             deletionCompletions.append(completion)
         }
@@ -172,7 +172,7 @@ class LocalCartLoaderTests: XCTestCase {
             deletionCompletions[index](nil)
         }
         
-        func insert(_ cart: [LocalCartItem], completion: @escaping (Error?) -> Void) {
+        func insert(_ cart: [LocalCartItem], completion: @escaping InsertionCompletion) {
             receivedMessages.append(.insert(cart))
             insertionCompletions.append(completion)
         }
@@ -185,7 +185,7 @@ class LocalCartLoaderTests: XCTestCase {
             insertionCompletions[index](nil)
         }
         
-        func retrieve(completion: @escaping (RetrieveCachedCartResult) -> Void) {
+        func retrieve(completion: @escaping RetrieveCompletion) {
             receivedMessages.append(.retrieve)
             retrievalCompletions.append(completion)
         }

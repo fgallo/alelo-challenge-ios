@@ -9,4 +9,5 @@ public protocol CartCache {
     typealias LoadResult = Swift.Result<[CartItem], Error>
     
     func save(_ cart: [CartItem], completion: @escaping (SaveResult) -> Void)
+    func load(completion: @escaping (LoadResult) -> Void)
 }
