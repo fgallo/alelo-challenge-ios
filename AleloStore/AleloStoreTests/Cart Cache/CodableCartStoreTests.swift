@@ -96,6 +96,19 @@ class CodableCartStoreTests: XCTestCase {
         expect(sut, toRetrieveTwice: .failure(anyNSError()))
     }
     
+    func test_insert_overridePreviouslyInsertedCacheValues() {
+        let sut = makeSUT()
+        
+        let firstInsertionError = insert(makeCart().local, to: sut)
+        XCTAssertNil(firstInsertionError, "Expectet to insert cache successfully")
+        
+        let latestCart = makeCart().local
+        let latestInsertionError = insert(latestCart, to: sut)
+        
+        XCTAssertNil(latestInsertionError, "Expectet to override cache successfully")
+        expect(sut, toRetrieve: .found(latestCart))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil, file: StaticString = #filePath, line: UInt = #line) -> CodableCartStore {
@@ -104,13 +117,16 @@ class CodableCartStoreTests: XCTestCase {
         return sut
     }
     
-    private func insert(_ cart: [LocalCartItem], to sut: CodableCartStore) {
+    @discardableResult 
+    private func insert(_ cart: [LocalCartItem], to sut: CodableCartStore) -> Error? {
         let exp = expectation(description: "Wait for cache insertion")
-        sut.insert(cart) { insertionError in
-            XCTAssertNil(insertionError, "Expected cart to be inserted successfully")
+        var insertionError: Error?
+        sut.insert(cart) { receivedInsertionError in
+            insertionError = receivedInsertionError
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
+        return insertionError
     }
     
     private func expect(_ sut: CodableCartStore, toRetrieveTwice expectedResult: RetrieveCachedCartResult, file: StaticString = #filePath, line: UInt = #line) {
