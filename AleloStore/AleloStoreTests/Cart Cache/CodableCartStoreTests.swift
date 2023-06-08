@@ -24,9 +24,13 @@ class CodableCartStore {
             return completion(.empty)
         }
         
-        let decoder = JSONDecoder()
-        let cart = try! decoder.decode([LocalCartItem].self, from: data)
-        completion(.found(cart))
+        do {
+            let decoder = JSONDecoder()
+            let cart = try decoder.decode([LocalCartItem].self, from: data)
+            completion(.found(cart))
+        } catch {
+            completion(.failure(error))
+        }
     }
 }
 
@@ -74,6 +78,14 @@ class CodableCartStoreTests: XCTestCase {
         expect(sut, toRetrieveTwice: .found(cart))
     }
     
+    func test_retrieve_deliversFailureOnRetrievalError() {
+        let sut = makeSUT()
+        
+        try! "invalid data".write(to: testSpecificStoreURL(), atomically: false, encoding: .utf8)
+        
+        expect(sut, toRetrieve: .failure(anyNSError()))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CodableCartStore {
@@ -101,7 +113,8 @@ class CodableCartStoreTests: XCTestCase {
         
         sut.retrieve { retrievedResult in
             switch (expectedResult, retrievedResult) {
-            case (.empty, .empty):
+            case (.empty, .empty),
+                (.failure, .failure):
                 break
                 
             case let (.found(expectedCart), .found(retrievedCart)):
