@@ -23,7 +23,7 @@ public final class RemoteProductsLoader: ProductsLoader {
             guard self != nil else { return }
             
             switch result {
-            case let .success(data, response):
+            case let .success((data, response)):
                 completion(ProductsMapper.map(data, from: response))
             case .failure:
                 completion(.failure(Error.connectivity))
