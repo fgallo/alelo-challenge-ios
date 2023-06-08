@@ -12,33 +12,51 @@ public final class RemoteProductImageDataLoader: ProductImageDataLoader {
     }
     
     public enum Error: Swift.Error {
+        case connectivity
         case invalidData
     }
     
-    private struct HTTPTaskWrapper: ProductImageDataLoaderTask {
-        let wrapped: HTTPClientTask
+    private final class HTTPClientTaskWrapper: ProductImageDataLoaderTask {
+        private var completion: ((ProductImageDataLoader.Result) -> Void)?
+        
+        var wrapped: HTTPClientTask?
+        
+        init(_ completion: @escaping (ProductImageDataLoader.Result) -> Void) {
+            self.completion = completion
+        }
+        
+        func complete(with result: ProductImageDataLoader.Result) {
+            completion?(result)
+        }
         
         func cancel() {
-            wrapped.cancel()
+            preventFurtherCompletions()
+            wrapped?.cancel()
+        }
+        
+        private func preventFurtherCompletions() {
+            completion = nil
         }
     }
     
     @discardableResult
     public func loadImageData(from url: URL, completion: @escaping (ProductImageDataLoader.Result) -> Void) -> ProductImageDataLoaderTask {
-        return HTTPTaskWrapper(wrapped: client.get(from: url) { [weak self] result in
+        let task = HTTPClientTaskWrapper(completion)
+        task.wrapped = client.get(from: url) { [weak self] result in
             guard self != nil else { return }
             
             switch result {
             case let .success((data, response)):
                 if response.statusCode == 200, !data.isEmpty {
-                    completion(.success(data))
+                    task.complete(with: .success(data))
                 } else {
-                    completion(.failure(Error.invalidData))
+                    task.complete(with: .failure(Error.invalidData))
                 }
                 
-            case let .failure(error):
-                completion(.failure(error))
+            case .failure:
+                task.complete(with: .failure(Error.connectivity))
             }
-        })
+        }
+        return task
     }
 }
