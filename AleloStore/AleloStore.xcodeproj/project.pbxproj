@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1244722A3223EA00663361 /* CodableCartStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1244712A3223EA00663361 /* CodableCartStore.swift */; };
 		4F18DE372A2F6D4D008E369B /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18DE362A2F6D4D008E369B /* ProductsViewModel.swift */; };
 		4F18DE3A2A2F7226008E369B /* ProductsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18DE392A2F7226008E369B /* ProductsUIComposer.swift */; };
 		4F18DE3C2A2F79BD008E369B /* ProductCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18DE3B2A2F79BD008E369B /* ProductCellController.swift */; };
@@ -100,6 +101,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F1244712A3223EA00663361 /* CodableCartStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableCartStore.swift; sourceTree = "<group>"; };
 		4F18DE362A2F6D4D008E369B /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		4F18DE392A2F7226008E369B /* ProductsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsUIComposer.swift; sourceTree = "<group>"; };
 		4F18DE3B2A2F79BD008E369B /* ProductCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellController.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			children = (
 				4FCE36FD2A30DCED005C7FDC /* LocalCartLoader.swift */,
 				4FCE36FF2A30DD81005C7FDC /* CartStore.swift */,
+				4F1244712A3223EA00663361 /* CodableCartStore.swift */,
 				4FCE37012A310D14005C7FDC /* LocalCartItem.swift */,
 				4FCE37032A310D24005C7FDC /* LocalProduct.swift */,
 				4FCE37052A310D2A005C7FDC /* LocalProductSize.swift */,
@@ -652,6 +655,7 @@
 				4FCE37022A310D14005C7FDC /* LocalCartItem.swift in Sources */,
 				4FCE37062A310D2A005C7FDC /* LocalProductSize.swift in Sources */,
 				4F93FF3B2A2BB691008F0BF0 /* ProductsLoader.swift in Sources */,
+				4F1244722A3223EA00663361 /* CodableCartStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

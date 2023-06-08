@@ -5,52 +5,6 @@
 import XCTest
 import AleloStore
 
-class CodableCartStore: CartStore {
-    private let storeURL: URL
-    
-    init(storeURL: URL) {
-        self.storeURL = storeURL
-    }
-    
-    func deleteCachedCart(completion: @escaping DeletionCompletion) {
-        guard FileManager.default.fileExists(atPath: storeURL.path) else {
-            return completion(nil)
-        }
-        
-        do {
-            try FileManager.default.removeItem(at: storeURL)
-            completion(nil)
-        } catch {
-            completion(error)
-        }
-    }
-    
-    func insert(_ cart: [LocalCartItem], completion: @escaping InsertionCompletion) {
-        do {
-            let encoder = JSONEncoder()
-            let encoded = try encoder.encode(cart)
-            try encoded.write(to: storeURL)
-            completion(nil)
-        } catch {
-            completion(error)
-        }
-    }
-    
-    func retrieve(completion: @escaping RetrieveCompletion) {
-        guard let data = try? Data(contentsOf: storeURL) else {
-            return completion(.empty)
-        }
-        
-        do {
-            let decoder = JSONDecoder()
-            let cart = try decoder.decode([LocalCartItem].self, from: data)
-            completion(.found(cart))
-        } catch {
-            completion(.failure(error))
-        }
-    }
-}
-
 class CodableCartStoreTests: XCTestCase {
     
     override func setUp() {
