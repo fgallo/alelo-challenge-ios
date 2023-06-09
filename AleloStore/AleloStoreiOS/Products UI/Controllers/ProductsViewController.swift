@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import AleloStore
 
 final public class ProductsViewController: UITableViewController, UITableViewDataSourcePrefetching {
     var viewModel: ProductsViewModel?
@@ -24,7 +23,11 @@ final public class ProductsViewController: UITableViewController, UITableViewDat
     }
     
     @objc func saveCart() {
-        viewModel?.saveCart()
+        let cart = tableModel
+            .map { $0.viewModel.toCartItem() }
+            .filter { $0.quantity > 0 }
+        
+        viewModel?.saveCart(cart)
     }
     
     private func binding() {

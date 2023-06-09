@@ -26,9 +26,14 @@ final class CartCellViewModel<Image> {
     }
     
     var totalPrice: String? {
-        if let priceDouble = Double(price?.replacingOccurrences(of: "R$ ", with: "") ?? "") {
-            let total = priceDouble * Double(model.quantity)
-            return "R$ \(total)"
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .currency
+        
+        if let formattedPrice = price?.replacingOccurrences(of: "R$ ", with: "").replacingOccurrences(of: ",", with: "."),
+           let priceDouble = Double(formattedPrice),
+           let formattedTipAmount = formatter.string(from: priceDouble * Double(model.quantity) as NSNumber) {
+            return formattedTipAmount
         }
         
         return "-"

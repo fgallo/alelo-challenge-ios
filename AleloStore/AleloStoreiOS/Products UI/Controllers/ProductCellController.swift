@@ -5,7 +5,7 @@
 import UIKit
 
 final class ProductCellController {
-    private let viewModel: ProductCellViewModel<UIImage>
+    let viewModel: ProductCellViewModel<UIImage>
     
     init(viewModel: ProductCellViewModel<UIImage>) {
         self.viewModel = viewModel

@@ -28,8 +28,8 @@ final public class ProductsViewModel {
         }
     }
     
-    func saveCart() {
-        cartCache.save([]) { [weak self] error in
+    func saveCart(_ cart: [CartItem]) {
+        cartCache.save(cart) { [weak self] error in
             self?.onSaveCart?(error)
         }
     }
