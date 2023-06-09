@@ -53,6 +53,13 @@
 		4FCE37062A310D2A005C7FDC /* LocalProductSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE37052A310D2A005C7FDC /* LocalProductSize.swift */; };
 		4FD0F86F2A32763E000F01B6 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F86E2A32763E000F01B6 /* MainQueueDispatchDecorator.swift */; };
 		4FD0F8722A328A59000F01B6 /* UITableView+Dequeueing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F8712A328A59000F01B6 /* UITableView+Dequeueing.swift */; };
+		4FD0F8872A329DF3000F01B6 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F8862A329DF3000F01B6 /* CartCell.swift */; };
+		4FD0F8892A329DFB000F01B6 /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FD0F8882A329DFB000F01B6 /* Cart.storyboard */; };
+		4FD0F88C2A329E14000F01B6 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F88B2A329E14000F01B6 /* CartViewController.swift */; };
+		4FD0F8902A32A15C000F01B6 /* CartCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F88F2A32A15C000F01B6 /* CartCellController.swift */; };
+		4FD0F8922A32A179000F01B6 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F8912A32A179000F01B6 /* CartViewModel.swift */; };
+		4FD0F8942A32A229000F01B6 /* CartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F8932A32A229000F01B6 /* CartCellViewModel.swift */; };
+		4FD0F8962A32A3BA000F01B6 /* CartUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F8952A32A3BA000F01B6 /* CartUIComposer.swift */; };
 		4FF4192F2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		4FFC290D2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */; };
 		4FFC290E2A2D508F003C20CB /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
@@ -151,6 +158,13 @@
 		4FCE37052A310D2A005C7FDC /* LocalProductSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalProductSize.swift; sourceTree = "<group>"; };
 		4FD0F86E2A32763E000F01B6 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		4FD0F8712A328A59000F01B6 /* UITableView+Dequeueing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeueing.swift"; sourceTree = "<group>"; };
+		4FD0F8862A329DF3000F01B6 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
+		4FD0F8882A329DFB000F01B6 /* Cart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
+		4FD0F88B2A329E14000F01B6 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		4FD0F88F2A32A15C000F01B6 /* CartCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCellController.swift; sourceTree = "<group>"; };
+		4FD0F8912A32A179000F01B6 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		4FD0F8932A32A229000F01B6 /* CartCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCellViewModel.swift; sourceTree = "<group>"; };
+		4FD0F8952A32A3BA000F01B6 /* CartUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartUIComposer.swift; sourceTree = "<group>"; };
 		4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		4FFC290A2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AleloStoreAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AleloStoreAPIEndToEndTests.swift; sourceTree = "<group>"; };
@@ -411,6 +425,52 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		4FD0F8842A329DE4000F01B6 /* Cart UI */ = {
+			isa = PBXGroup;
+			children = (
+				4FD0F88E2A32A0B2000F01B6 /* Composers */,
+				4FD0F88D2A32A0B0000F01B6 /* Models */,
+				4FD0F88A2A329E0C000F01B6 /* Controllers */,
+				4FD0F8852A329DE8000F01B6 /* Views */,
+			);
+			path = "Cart UI";
+			sourceTree = "<group>";
+		};
+		4FD0F8852A329DE8000F01B6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4FD0F8862A329DF3000F01B6 /* CartCell.swift */,
+				4FD0F8882A329DFB000F01B6 /* Cart.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4FD0F88A2A329E0C000F01B6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4FD0F88B2A329E14000F01B6 /* CartViewController.swift */,
+				4FD0F88F2A32A15C000F01B6 /* CartCellController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4FD0F88D2A32A0B0000F01B6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4FD0F8912A32A179000F01B6 /* CartViewModel.swift */,
+				4FD0F8932A32A229000F01B6 /* CartCellViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4FD0F88E2A32A0B2000F01B6 /* Composers */ = {
+			isa = PBXGroup;
+			children = (
+				4FD0F8952A32A3BA000F01B6 /* CartUIComposer.swift */,
+			);
+			path = Composers;
+			sourceTree = "<group>";
+		};
 		4FF4192D2A2C2CA800E186A9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +503,7 @@
 		4FFC29202A2E5244003C20CB /* AleloStoreiOS */ = {
 			isa = PBXGroup;
 			children = (
+				4FD0F8842A329DE4000F01B6 /* Cart UI */,
 				4FC7A0752A2EDD4900F68ADC /* Products UI */,
 			);
 			path = AleloStoreiOS;
@@ -646,6 +707,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD0F8892A329DFB000F01B6 /* Cart.storyboard in Resources */,
 				4F18DE402A2F830E008E369B /* Products.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -714,12 +776,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD0F8942A32A229000F01B6 /* CartCellViewModel.swift in Sources */,
 				4FD0F8722A328A59000F01B6 /* UITableView+Dequeueing.swift in Sources */,
+				4FD0F8902A32A15C000F01B6 /* CartCellController.swift in Sources */,
+				4FD0F8872A329DF3000F01B6 /* CartCell.swift in Sources */,
+				4FD0F8962A32A3BA000F01B6 /* CartUIComposer.swift in Sources */,
+				4FD0F8922A32A179000F01B6 /* CartViewModel.swift in Sources */,
 				4FD0F86F2A32763E000F01B6 /* MainQueueDispatchDecorator.swift in Sources */,
 				4F18DE3A2A2F7226008E369B /* ProductsUIComposer.swift in Sources */,
 				4F18DE422A2FA3E5008E369B /* ProductCellViewModel.swift in Sources */,
 				4FC63D832A2ECDE10051807E /* UIView+Shimmering.swift in Sources */,
 				4F18DE3C2A2F79BD008E369B /* ProductCellController.swift in Sources */,
+				4FD0F88C2A329E14000F01B6 /* CartViewController.swift in Sources */,
 				4F704CB92A2EA63C00E05741 /* ProductsViewController.swift in Sources */,
 				4F18DE372A2F6D4D008E369B /* ProductsViewModel.swift in Sources */,
 				4F69E5A12A2EAF4500D701A3 /* ProductCell.swift in Sources */,

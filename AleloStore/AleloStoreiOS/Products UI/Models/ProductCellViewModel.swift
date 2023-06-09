@@ -89,4 +89,7 @@ final class ProductCellViewModel<Image> {
         addedToCart += 1
     }
     
+    func toCartItem() -> CartItem {
+        return CartItem(product: model, quantity: addedToCart)
+    }
 }

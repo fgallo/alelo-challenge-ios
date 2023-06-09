@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         rootViewController: ProductsUIComposer.productsComposedWith(
             productsLoader: makeProductsLoader(),
             imageLoader: makeImageLoader(),
-            cartCache: makeCartLoader()
+            cartCache: makeCartLoader(),
+            selection: showCart
         ))
     
     private func makeProductsLoader() -> ProductsLoader {
@@ -37,5 +38,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storeURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("cart.store")
         let store = CodableCartStore(storeURL: storeURL)
         return LocalCartLoader(store: store)
+    }
+    
+    private func showCart() {
+        let cartCache = makeCartLoader()
+        let loader =  makeImageLoader()
+        let CartViewController = CartUIComposer.cartComposedWith(imageLoader: loader, cartCache: cartCache)
+        navigationController.pushViewController(CartViewController, animated: true)
     }
 }

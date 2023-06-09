@@ -8,7 +8,10 @@ import AleloStore
 public final class ProductsUIComposer {
     private init() {}
     
-    public static func productsComposedWith(productsLoader: ProductsLoader, imageLoader: ProductImageDataLoader, cartCache: CartCache) -> ProductsViewController {
+    public static func productsComposedWith(productsLoader: ProductsLoader,
+                                            imageLoader: ProductImageDataLoader,
+                                            cartCache: CartCache,
+                                            selection: @escaping () -> Void) -> ProductsViewController {
         let productsViewModel = ProductsViewModel(
             productsLoader: MainQueueDispatchDecorator(decoratee: productsLoader),
             cartCache: MainQueueDispatchDecorator(decoratee: cartCache)
@@ -16,6 +19,12 @@ public final class ProductsUIComposer {
         
         let productsViewController = makeProductsViewController(title: "Products")
         productsViewController.viewModel = productsViewModel
+
+        productsViewController.selection = selection
+        productsViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"),
+                                                                                   style: .plain,
+                                                                                   target: productsViewController,
+                                                                                   action: #selector(ProductsViewController.saveCart))
         
         productsViewModel.onProductsLoad = adaptProductsToCellControllers(
             forwardingTo: productsViewController,

@@ -3,12 +3,14 @@
 //
 
 import UIKit
+import AleloStore
 
 final public class ProductsViewController: UITableViewController, UITableViewDataSourcePrefetching {
     var viewModel: ProductsViewModel?
     var tableModel = [ProductCellController]() {
         didSet { tableView.reloadData() }
     }
+    var selection: (() -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,7 @@ final public class ProductsViewController: UITableViewController, UITableViewDat
         viewModel?.loadProducts()
     }
     
-    @objc private func showCart() {
+    @objc func saveCart() {
         viewModel?.saveCart()
     }
     
@@ -30,13 +32,13 @@ final public class ProductsViewController: UITableViewController, UITableViewDat
             isLoading ? self?.refreshControl?.beginRefreshing() : self?.refreshControl?.endRefreshing()
         }
         
-        viewModel?.onSaveCart = { error in
-            guard let _ = error else {
+        viewModel?.onSaveCart = { [weak self] error in
+            guard error == nil else {
                 return
             }
+            
+            self?.selection?()
         }
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(showCart))
     }
      
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
