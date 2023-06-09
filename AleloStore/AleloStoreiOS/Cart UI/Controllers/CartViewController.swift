@@ -10,6 +10,8 @@ public final class CartViewController: UITableViewController {
         didSet { tableView.reloadData() }
     }
     
+    @IBOutlet private(set) var totalLabel: UILabel!
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,9 +24,9 @@ public final class CartViewController: UITableViewController {
     }
     
     private func binding() {
-        //viewModel?.onLoadingStateChange = { [weak self] isLoading in
-          //  isLoading ? self?.refreshControl?.beginRefreshing() : self?.refreshControl?.endRefreshing()
-        //}
+        viewModel?.onTotalPriceCalculated = { [weak self] total in
+            self?.totalLabel.text = total
+        }
     }
      
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -146,6 +146,9 @@
                             <outlet property="delegate" destination="ZeQ-VK-rfE" id="tQt-Fd-7Xb"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="totalLabel" destination="yDC-UC-CaI" id="l6I-RV-mIl"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WuB-H7-Pfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

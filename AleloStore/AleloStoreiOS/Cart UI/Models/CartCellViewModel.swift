@@ -22,7 +22,7 @@ final class CartCellViewModel<Image> {
     }
     
     var price: String? {
-        return model.product.regularPrice
+        return model.product.salePrice
     }
     
     var totalPrice: String? {
