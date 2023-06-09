@@ -323,7 +323,9 @@ final class ProductsViewControllerTests: XCTestCase {
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: ProductsViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = ProductsUIComposer.productsComposedWith(productsLoader: loader, imageLoader: loader)
+        let store = CartStoreSpy()
+        let cartLoader = LocalCartLoader(store: store)
+        let sut = ProductsUIComposer.productsComposedWith(productsLoader: loader, imageLoader: loader, cartCache: cartLoader, selection: {})
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, loader)
     }
@@ -337,8 +339,8 @@ final class ProductsViewControllerTests: XCTestCase {
         }
         
         XCTAssertEqual(cell.nameText, product.name)
-        XCTAssertEqual(cell.regularPriceText, product.regularPrice)
-        XCTAssertEqual(cell.salePriceText, product.salePrice)
+        XCTAssertEqual(cell.regularPriceText, product.salePrice)
+        XCTAssertEqual(cell.salePriceText, product.regularPrice)
         XCTAssertEqual(cell.isOnSale, product.onSale)
         XCTAssertEqual(cell.sizesText, product.sizes.first?.size)
     }

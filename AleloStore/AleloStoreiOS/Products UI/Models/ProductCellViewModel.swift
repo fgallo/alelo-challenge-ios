@@ -23,7 +23,7 @@ final class ProductCellViewModel<Image> {
     }
     
     var regularPrice: String? {
-        return model.regularPrice
+        return model.onSale ? model.salePrice : model.regularPrice
     }
     
     var salePrice: NSAttributedString? {
@@ -31,7 +31,7 @@ final class ProductCellViewModel<Image> {
             return nil
         }
         
-        let price = model.salePrice
+        let price = model.regularPrice
         let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: price)
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
         return attributeString

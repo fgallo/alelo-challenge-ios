@@ -60,6 +60,7 @@
 		4FD0F8922A32A179000F01B6 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F8912A32A179000F01B6 /* CartViewModel.swift */; };
 		4FD0F8942A32A229000F01B6 /* CartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F8932A32A229000F01B6 /* CartCellViewModel.swift */; };
 		4FD0F8962A32A3BA000F01B6 /* CartUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0F8952A32A3BA000F01B6 /* CartUIComposer.swift */; };
+		4FD0F8982A32DCF9000F01B6 /* CartStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F350A5F2A316A1C001F57CA /* CartStoreSpy.swift */; };
 		4FF4192F2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF4192E2A2C2CCF00E186A9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		4FFC290D2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC290C2A2D508F003C20CB /* AleloStoreAPIEndToEndTests.swift */; };
 		4FFC290E2A2D508F003C20CB /* AleloStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2B8EFE2A2BAD91000B1F6D /* AleloStore.framework */; };
@@ -798,6 +799,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD0F8982A32DCF9000F01B6 /* CartStoreSpy.swift in Sources */,
 				4FC7A0822A2EDFC800F68ADC /* ProductsViewControllerTests+LoaderSpy.swift in Sources */,
 				4F7F77012A2E970C0057F4FD /* ProductsViewControllerTests.swift in Sources */,
 				4FC7A07E2A2EDF2B00F68ADC /* UIRefreshControl+TestHelpers.swift in Sources */,
